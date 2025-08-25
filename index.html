@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="config.js"></script>
     <style>
         :root {
             --soul: #F8F7F4;
@@ -248,6 +249,131 @@
             font-style: italic;
         }
 
+        /* ROI Калькулятор */
+        .calculator-section {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-weight: 500;
+            color: var(--shadow);
+        }
+
+        .input-group input[type="number"] {
+            padding: 0.8rem;
+            border: 1px solid var(--memory);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            background: var(--soul);
+            color: var(--shadow);
+        }
+
+        .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(179, 139, 89, 0.2);
+        }
+
+        .checkbox-group, .radio-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .checkbox-group label, .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .radio-options label {
+            font-size: 0.9rem;
+        }
+
+        .calculator-results {
+            background: var(--whisper);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--memory);
+        }
+
+        .calculator-results h4 {
+            margin-bottom: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--memory);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item.highlight {
+            background: var(--gold);
+            color: var(--soul);
+            margin: 1rem -1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .result-label {
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .result-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--soul);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--amber);
+            border-left: 3px solid var(--gold);
+        }
+
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(180, 139, 89, 0.15);
@@ -468,6 +594,10 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         /* Анимации */
@@ -554,7 +684,7 @@
                 <h4>🇩🇪 Вариант A (Германия)</h4>
                 <ul>
                     <li>Доверие и долгосрочные контракты</li>
-                    <li>Чистая прибыль: ~8 610 € / 100 т</li>
+                    <li>Чистая прибыль: ~9 100 € / 100 т</li>
                     <li>Высокая репутация</li>
                 </ul>
                 <div class="card-hint">👆 Нажмите для детального плана</div>
@@ -564,7 +694,7 @@
                 <h4>🇵🇱 Вариант B (Польша)</h4>
                 <ul>
                     <li>Быстрый старт, низкие налоги</li>
-                    <li>Чистая прибыль: ~11 193 € / 100 т</li>
+                    <li>Чистая прибыль: ~11 800 € / 100 т</li>
                     <li>Оптимальное соотношение риск/доход</li>
                 </ul>
                 <div class="card-hint">👆 Нажмите для детального плана</div>
@@ -635,7 +765,7 @@
                 <h4>🇩🇪 Вариант A (Германия)</h4>
                 <ul>
                     <li>Доверие и долгосрочные контракты</li>
-                    <li>Чистая прибыль: ~8 610 € / 100 т</li>
+                    <li>Чистая прибыль: ~9 100 € / 100 т</li>
                     <li>Высокая репутация</li>
                 </ul>
                 <div class="card-hint">👆 Нажмите для детального плана</div>
@@ -645,7 +775,7 @@
                 <h4>🇵🇱 Вариант B (Польша)</h4>
                 <ul>
                     <li>Быстрый старт, низкие налоги</li>
-                    <li>Чистая прибыль: ~11 193 € / 100 т</li>
+                    <li>Чистая прибыль: ~11 800 € / 100 т</li>
                     <li>Оптимальное соотношение риск/доход</li>
                 </ul>
                 <div class="card-hint">👆 Нажмите для детального плана</div>
@@ -685,31 +815,104 @@
             <tbody>
                 <tr>
                     <td>Германия (~30% налог)</td>
-                    <td>~8 610 €</td>
-                    <td>13,0%</td>
+                    <td>~9 100 €</td>
+                    <td>13,8%</td>
                 </tr>
                 <tr>
                     <td>Польша (9% CIT)</td>
-                    <td>~11 193 €</td>
-                    <td>17,0%</td>
+                    <td>~11 800 €</td>
+                    <td>17,9%</td>
                 </tr>
                 <tr>
                     <td>Польша (19% CIT)</td>
-                    <td>~9 963 €</td>
-                    <td>15,1%</td>
+                    <td>~10 500 €</td>
+                    <td>15,9%</td>
                 </tr>
                 <tr>
                     <td>Агентская (5%)</td>
                     <td>~3 950 €</td>
-                    <td>6,0%</td>
+                    <td>n/a</td>
                 </tr>
                 <tr>
                     <td>Агентская (7%)</td>
                     <td>~5 530 €</td>
-                    <td>8,4%</td>
+                    <td>n/a</td>
                 </tr>
             </tbody>
         </table>
+        
+        <!-- ROI Калькулятор -->
+        <div id="roi-calculator" class="calculator-section">
+            <h3>🧮 ROI Калькулятор</h3>
+            <p style="color: var(--amber); margin-bottom: 2rem;">Экспериментируйте с параметрами для оптимизации прибыльности</p>
+            
+            <div class="calculator-grid">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="purchase-price">Закупка €/т:</label>
+                        <input type="number" id="purchase-price" value="550" min="400" max="700">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="logistics-cost">Логистика €/т:</label>
+                        <input type="number" id="logistics-cost" value="110" min="80" max="150">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="other-costs">Прочие расходы €/т:</label>
+                        <input type="number" id="other-costs" value="0" min="0" max="100" placeholder="Склад, инспекция, брокер...">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="selling-price">Продажа €/т:</label>
+                        <input type="number" id="selling-price" value="790" min="750" max="850">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="batch-size">Размер партии (т):</label>
+                        <input type="number" id="batch-size" value="100" min="50" max="500">
+                    </div>
+                    
+                    <div class="input-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="insurance" checked>
+                            Страхование (700 € на 100 т)
+                        </label>
+                    </div>
+                    
+                    <div class="input-group radio-group">
+                        <label>Налог:</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="tax" value="0.09" checked> 9% (малый CIT)</label>
+                            <label><input type="radio" name="tax" value="0.19"> 19% (обычный CIT)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="roi-output" class="calculator-results">
+                    <h4>Результаты расчета</h4>
+                    <div class="result-item">
+                        <span class="result-label">Валовая прибыль:</span>
+                        <span class="result-value" id="gross-profit">13 000 €</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Операционная прибыль:</span>
+                        <span class="result-value" id="operating-profit">12 300 €</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Чистая прибыль:</span>
+                        <span class="result-value" id="net-profit">11 193 €</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">ROI:</span>
+                        <span class="result-value" id="roi-value">17,0%</span>
+                    </div>
+                    <div class="result-note">
+                        💡 <strong>Прочие расходы</strong> включают: складские услуги, инспекцию качества, таможенного брокера, банковские комиссии, непредвиденные расходы. При добавлении 70 €/т ROI снижается до ~6%.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -725,7 +928,7 @@
                 <p>2-3 месяца</p>
                 <ul>
                     <li>100 т через польскую Sp. z o.o.</li>
-                    <li>Чистая прибыль: ~11 200 €</li>
+                    <li>Чистая прибыль: ~11 800 €</li>
                     <li>Проверка модели на практике</li>
                 </ul>
             </div>
@@ -735,7 +938,7 @@
                 <p>6-12 месяцев</p>
                 <ul>
                     <li>1000 т/год через немецкую GmbH</li>
-                    <li>Чистая прибыль: ~112 000 €/год</li>
+                    <li>Чистая прибыль: ~118 000 €/год</li>
                     <li>Строительство репутации</li>
                 </ul>
             </div>
@@ -949,7 +1152,7 @@
 <!-- Слайд 12: Команда -->
 <div class="slide">
     <div class="container">
-        <h2>👥 Команда и компетенции</h2>
+        <h2>�� Команда и компетенции</h2>
         <h3>Кто и что делает</h3>
         
         <div class="grid">
@@ -1129,7 +1332,7 @@
                 <h4>💰 Почему выгодно</h4>
                 <ul>
                     <li>Маржа 130 €/т</li>
-                    <li>ROI 17,0% за 3 месяца</li>
+                    <li>ROI 17,9% за 3 месяца</li>
                     <li>Потенциал масштабирования</li>
                 </ul>
             </div>
@@ -1150,8 +1353,9 @@
 </div>
 
 <script>
-    // Простая защита паролем
-    const correctPassword = "flax2024"; // Измените на нужный пароль
+    // Улучшенная защита паролем (UX gating only)
+    // ВАЖНО: Для реальной приватности используйте Cloudflare Access или Netlify Password Protection
+    const correctPassword = window.__PW || "flax2024";
     
     function checkPassword() {
         const input = document.getElementById('passwordInput');
@@ -1162,7 +1366,6 @@
         if (input.value === correctPassword) {
             overlay.style.display = 'none';
             content.style.display = 'block';
-            // Сохраняем в localStorage, чтобы не вводить пароль каждый раз
             localStorage.setItem('authenticated', 'true');
         } else {
             error.style.display = 'block';
@@ -1170,12 +1373,18 @@
         }
     }
     
-    // Проверяем, был ли пользователь уже авторизован
+    // Проверяем авторизацию при загрузке
     window.onload = function() {
         if (localStorage.getItem('authenticated') === 'true') {
             document.getElementById('passwordOverlay').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
         }
+        
+        // Инициализируем калькулятор
+        initCalculator();
+        
+        // Заменяем числа из конфигурации
+        replaceNumbersFromConfig();
     }
     
     // Обработка Enter в поле пароля
@@ -1185,10 +1394,96 @@
         }
     });
     
-    // Функция для показа терминов (будет реализована в глоссарии)
+    // Функция для показа терминов
     function showTerm(term) {
-        // Пока просто переходим на страницу глоссария
         window.location.href = 'glossary.html#' + term;
+    }
+    
+    // ROI Калькулятор
+    function initCalculator() {
+        const inputs = [
+            'purchase-price', 'logistics-cost', 'other-costs', 
+            'selling-price', 'batch-size', 'insurance'
+        ];
+        
+        // Добавляем обработчики событий
+        inputs.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', updateCalculator);
+                element.addEventListener('change', updateCalculator);
+            }
+        });
+        
+        // Обработчики для радио кнопок
+        document.querySelectorAll('input[name="tax"]').forEach(radio => {
+            radio.addEventListener('change', updateCalculator);
+        });
+        
+        // Инициализируем с дефолтными значениями
+        updateCalculator();
+    }
+    
+    function updateCalculator() {
+        const purchase = parseFloat(document.getElementById('purchase-price').value) || 0;
+        const logistics = parseFloat(document.getElementById('logistics-cost').value) || 0;
+        const other = parseFloat(document.getElementById('other-costs').value) || 0;
+        const selling = parseFloat(document.getElementById('selling-price').value) || 0;
+        const batch = parseFloat(document.getElementById('batch-size').value) || 0;
+        const insurance = document.getElementById('insurance').checked;
+        const tax = parseFloat(document.querySelector('input[name="tax"]:checked').value) || 0.09;
+        
+        // Используем функцию из config.js
+        const result = window.calculateROI(purchase, logistics, other, selling, batch, insurance, tax);
+        
+        // Обновляем результаты
+        document.getElementById('gross-profit').textContent = formatCurrency(result.grossProfit);
+        document.getElementById('operating-profit').textContent = formatCurrency(result.operatingProfit);
+        document.getElementById('net-profit').textContent = formatCurrency(result.netProfit);
+        document.getElementById('roi-value').textContent = formatPercentage(result.roi);
+    }
+    
+    function formatCurrency(value) {
+        return new Intl.NumberFormat('de-DE', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(value);
+    }
+    
+    function formatPercentage(value) {
+        return new Intl.NumberFormat('de-DE', {
+            style: 'percent',
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+        }).format(value / 100);
+    }
+    
+    // Замена чисел из конфигурации
+    function replaceNumbersFromConfig() {
+        if (!window.FLAX_DEFAULTS) return;
+        
+        const defaults = window.FLAX_DEFAULTS;
+        
+        // Заменяем ключевые числа в тексте
+        const replacements = [
+            { search: '550€', replace: `${defaults.unit.buy}€` },
+            { search: '110€', replace: `${defaults.unit.log}€` },
+            { search: '790€', replace: `${defaults.unit.sell}€` },
+            { search: '130€', replace: `${defaults.unit.sell - defaults.unit.buy - defaults.unit.log}€` }
+        ];
+        
+        // Применяем замены к видимым элементам
+        document.querySelectorAll('p, li, td, span').forEach(element => {
+            let text = element.textContent;
+            replacements.forEach(rep => {
+                text = text.replace(new RegExp(rep.search, 'g'), rep.replace);
+            });
+            if (text !== element.textContent) {
+                element.textContent = text;
+            }
+        });
     }
     
     // Предотвращение конфликтов с term-link
@@ -1197,13 +1492,11 @@
         
         clickableCards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // Если клик был на term-link, не открываем карточку
                 if (e.target.classList.contains('term-link')) {
                     e.stopPropagation();
                     return;
                 }
                 
-                // Иначе открываем соответствующую страницу
                 const cardTitle = this.querySelector('h4').textContent;
                 if (cardTitle.includes('Германия')) {
                     window.open('germany-plan.html', '_blank');
