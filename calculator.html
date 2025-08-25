@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор экспорта льна - Интерактивные расчеты</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soul: #F8F7F4;
+            --shadow: #1A1A1A;
+            --memory: #D4C4A8;
+            --whisper: #E8E0D0;
+            --gold: #B38B59;
+            --amber: #C4A484;
+            --earth: #9CAF88;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--soul);
+            color: var(--shadow);
+            line-height: 1.6;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--soul);
+            border-bottom: 1px solid var(--memory);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--amber);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--amber);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .expenses-panel {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .results-panel {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            position: sticky;
+            top: 120px;
+        }
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--whisper);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .expense-item:hover {
+            border-color: var(--gold);
+            background: var(--whisper);
+        }
+
+        .expense-item.disabled {
+            opacity: 0.5;
+            background: var(--whisper);
+        }
+
+        .expense-info {
+            flex: 1;
+        }
+
+        .expense-name {
+            font-weight: 600;
+            color: var(--shadow);
+            margin-bottom: 0.5rem;
+        }
+
+        .expense-description {
+            font-size: 0.9rem;
+            color: var(--amber);
+            margin-bottom: 0.5rem;
+        }
+
+        .expense-risk {
+            font-size: 0.8rem;
+            color: var(--danger);
+            font-weight: 500;
+        }
+
+        .expense-cost {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--gold);
+            margin-left: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            margin-left: 1rem;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--memory);
+            transition: 0.3s;
+            border-radius: 30px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--soul);
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--success);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .results-summary {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profit-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .profit-positive {
+            color: var(--success);
+        }
+
+        .profit-negative {
+            color: var(--danger);
+        }
+
+        .profit-neutral {
+            color: var(--gold);
+        }
+
+        .roi-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--amber);
+            margin-bottom: 2rem;
+        }
+
+        .risk-indicator {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .risk-low {
+            background: var(--success);
+            color: var(--soul);
+        }
+
+        .risk-medium {
+            background: var(--warning);
+            color: var(--shadow);
+        }
+
+        .risk-high {
+            background: var(--danger);
+            color: var(--soul);
+        }
+
+        .risk-very-high {
+            background: #8e44ad;
+            color: var(--soul);
+        }
+
+        .breakdown {
+            margin-top: 2rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--whisper);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .breakdown-label {
+            color: var(--shadow);
+        }
+
+        .breakdown-value {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .warnings-panel {
+            background: linear-gradient(45deg, #fff3cd, #ffeaa7);
+            border: 1px solid #fdcb6e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .warnings-panel h4 {
+            color: #d63031;
+            margin-bottom: 1rem;
+        }
+
+        .warning-item {
+            color: var(--shadow);
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .warning-item:before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            background: var(--gold);
+            color: var(--soul);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .preset-btn:hover {
+            background: var(--amber);
+        }
+
+        .preset-btn.active {
+            background: var(--success);
+        }
+
+        .volume-slider {
+            margin: 2rem 0;
+        }
+
+        .volume-slider label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .volume-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--memory);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .expense-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .expense-cost {
+                margin-left: 0;
+            }
+            
+            .toggle-switch {
+                margin-left: 0;
+            }
+        }
+
+        /* Анимации */
+        .expense-item {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profit-display {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="nav">
+    <h1>🧮 Калькулятор экспорта льна</h1>
+    <div class="nav-links">
+        <a href="index.html">← Назад к презентации</a>
+        <a href="process.html">Процесс</a>
+        <a href="glossary.html">Глоссарий</a>
+    </div>
+</nav>
+
+<!-- Контент -->
+<div class="content">
+    <h1>🧮 Интерактивный калькулятор экспорта льна</h1>
+    <div class="subtitle">Включайте и выключайте статьи расходов, чтобы увидеть влияние на прибыль и риски</div>
+
+    <!-- Пресеты -->
+    <div class="preset-buttons">
+        <button class="preset-btn active" onclick="loadPreset('full')">Полная защита</button>
+        <button class="preset-btn" onclick="loadPreset('minimal')">Минимальные расходы</button>
+        <button class="preset-btn" onclick="loadPreset('balanced')">Сбалансированный</button>
+        <button class="preset-btn" onclick="loadPreset('risky')">Рискованный</button>
+    </div>
+
+    <!-- Слайдер объема -->
+    <div class="volume-slider">
+        <label for="volume">Объем поставки (тонн):</label>
+        <input type="range" id="volume" min="50" max="500" value="100" step="50">
+        <input type="number" id="volumeNumber" value="100" min="50" max="500" class="volume-input">
+    </div>
+
+    <div class="calculator-grid">
+        <!-- Панель расходов -->
+        <div class="expenses-panel">
+            <h3>📋 Статьи расходов</h3>
+            <p style="color: var(--amber); margin-bottom: 2rem;">Включайте/выключайте статьи, чтобы увидеть влияние на прибыль</p>
+            
+            <div id="expensesList">
+                <!-- Расходы будут добавлены через JavaScript -->
+            </div>
+        </div>
+
+        <!-- Панель результатов -->
+        <div class="results-panel">
+            <h3>💰 Результаты расчета</h3>
+            
+            <div class="results-summary">
+                <div id="profitDisplay" class="profit-display profit-positive">+4 800 €</div>
+                <div id="roiDisplay" class="roi-display">ROI: 6,5% за 3 месяца</div>
+                <div id="riskIndicator" class="risk-indicator risk-low">Риск: Низкий</div>
+            </div>
+
+            <div class="breakdown">
+                <h4>📊 Детализация</h4>
+                <div id="breakdownList">
+                    <!-- Детализация будет добавлена через JavaScript -->
+                </div>
+            </div>
+
+            <div id="warningsPanel" class="warnings-panel" style="display: none;">
+                <h4>⚠️ Предупреждения</h4>
+                <div id="warningsList">
+                    <!-- Предупреждения будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Данные о расходах
+const expensesData = {
+    purchase: {
+        name: "Закупка льна",
+        description: "Покупка льна у казахстанских фермеров",
+        costPerTon: 550,
+        risk: "Без закупки нет товара для продажи",
+        category: "Основные"
+    },
+    transport: {
+        name: "Железнодорожная перевозка",
+        description: "Транспортировка из Казахстана в Польшу",
+        costPerTon: 80,
+        risk: "Груз может застрять на границе или повредиться",
+        category: "Логистика"
+    },
+    customs: {
+        name: "Таможенные сборы",
+        description: "Оформление документов, пошлины, сертификаты",
+        costPerTon: 30,
+        risk: "Задержки на таможне, штрафы за неправильные документы",
+        category: "Таможня"
+    },
+    warehouse: {
+        name: "Складские услуги",
+        description: "Приемка, хранение, комплектация партий",
+        costPerTon: 15,
+        risk: "Порча товара, кража, неправильная комплектация",
+        category: "Склад"
+    },
+    insurance: {
+        name: "Страхование груза",
+        description: "Cargo Insurance + Trade Credit Insurance",
+        costPerTon: 3,
+        risk: "Потеря груза, неплатеж покупателя",
+        category: "Страхование"
+    },
+    legal: {
+        name: "Юридические услуги",
+        description: "Контракты, проверка контрагентов, консультации",
+        costFixed: 1000,
+        risk: "Невыгодные условия контрактов, мошенничество",
+        category: "Юридические"
+    },
+    certification: {
+        name: "Сертификация и инспекция",
+        description: "SGS, сертификаты качества, фитосанитарные",
+        costPerTon: 10.3,
+        risk: "Отказ в сертификации, проблемы с качеством",
+        category: "Качество"
+    },
+    banking: {
+        name: "Банковские комиссии",
+        description: "Комиссии за переводы, конвертацию валют",
+        costPercent: 0.5,
+        risk: "Задержки платежей, высокие курсы валют",
+        category: "Банковские"
+    },
+    contingency: {
+        name: "Непредвиденные расходы",
+        description: "Резерв на форс-мажоры и задержки",
+        costPercent: 5,
+        risk: "Превышение бюджета, остановка сделки",
+        category: "Резерв"
+    }
+};
+
+// Пресеты
+const presets = {
+    full: {
+        name: "Полная защита",
+        enabled: Object.keys(expensesData),
+        description: "Все расходы включены, максимальная безопасность"
+    },
+    minimal: {
+        name: "Минимальные расходы",
+        enabled: ['purchase', 'transport'],
+        description: "Только основные расходы, высокие риски"
+    },
+    balanced: {
+        name: "Сбалансированный",
+        enabled: ['purchase', 'transport', 'customs', 'warehouse', 'insurance'],
+        description: "Оптимальное соотношение расходов и рисков"
+    },
+    risky: {
+        name: "Рискованный",
+        enabled: ['purchase', 'transport', 'customs'],
+        description: "Минимум расходов, очень высокие риски"
+    }
+};
+
+let currentVolume = 100;
+let enabledExpenses = [...presets.full.enabled];
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', function() {
+    renderExpenses();
+    updateResults();
+    
+    // Обработчики для слайдера объема
+    document.getElementById('volume').addEventListener('input', function(e) {
+        currentVolume = parseInt(e.target.value);
+        document.getElementById('volumeNumber').value = currentVolume;
+        updateResults();
+    });
+    
+    document.getElementById('volumeNumber').addEventListener('input', function(e) {
+        currentVolume = parseInt(e.target.value);
+        document.getElementById('volume').value = currentVolume;
+        updateResults();
+    });
+});
+
+// Рендер расходов
+function renderExpenses() {
+    const container = document.getElementById('expensesList');
+    container.innerHTML = '';
+    
+    Object.entries(expensesData).forEach(([key, expense]) => {
+        const isEnabled = enabledExpenses.includes(key);
+        const cost = calculateExpenseCost(key, expense);
+        
+        const expenseElement = document.createElement('div');
+        expenseElement.className = `expense-item ${isEnabled ? '' : 'disabled'}`;
+        expenseElement.innerHTML = `
+            <div class="expense-info">
+                <div class="expense-name">${expense.name}</div>
+                <div class="expense-description">${expense.description}</div>
+                <div class="expense-risk">${expense.risk}</div>
+            </div>
+            <div class="expense-cost">${formatCurrency(cost)}</div>
+            <label class="toggle-switch">
+                <input type="checkbox" ${isEnabled ? 'checked' : ''} onchange="toggleExpense('${key}', this.checked)">
+                <span class="slider"></span>
+            </label>
+        `;
+        
+        container.appendChild(expenseElement);
+    });
+}
+
+// Переключение расхода
+function toggleExpense(key, enabled) {
+    if (enabled) {
+        if (!enabledExpenses.includes(key)) {
+            enabledExpenses.push(key);
+        }
+    } else {
+        enabledExpenses = enabledExpenses.filter(k => k !== key);
+    }
+    
+    renderExpenses();
+    updateResults();
+}
+
+// Расчет стоимости расхода
+function calculateExpenseCost(key, expense) {
+    if (expense.costPerTon) {
+        return expense.costPerTon * currentVolume;
+    } else if (expense.costFixed) {
+        return expense.costFixed;
+    } else if (expense.costPercent) {
+        const baseCost = 550 * currentVolume; // Стоимость закупки
+        return (baseCost * expense.costPercent) / 100;
+    }
+    return 0;
+}
+
+// Обновление результатов
+function updateResults() {
+    const totalRevenue = 790 * currentVolume;
+    const totalExpenses = calculateTotalExpenses();
+    const profit = totalRevenue - totalExpenses;
+    const roi = (profit / totalExpenses) * 100;
+    const riskLevel = calculateRiskLevel();
+    
+    // Обновление отображения прибыли
+    const profitDisplay = document.getElementById('profitDisplay');
+    profitDisplay.textContent = formatCurrency(profit);
+    profitDisplay.className = `profit-display ${profit > 0 ? 'profit-positive' : profit < 0 ? 'profit-negative' : 'profit-neutral'}`;
+    
+    // Обновление ROI
+    document.getElementById('roiDisplay').textContent = `ROI: ${roi.toFixed(1)}% за 3 месяца`;
+    
+    // Обновление уровня риска
+    const riskIndicator = document.getElementById('riskIndicator');
+    riskIndicator.textContent = `Риск: ${riskLevel.name}`;
+    riskIndicator.className = `risk-indicator risk-${riskLevel.class}`;
+    
+    // Обновление детализации
+    updateBreakdown(totalRevenue, totalExpenses, profit);
+    
+    // Обновление предупреждений
+    updateWarnings();
+}
+
+// Расчет общих расходов
+function calculateTotalExpenses() {
+    let total = 0;
+    enabledExpenses.forEach(key => {
+        const expense = expensesData[key];
+        total += calculateExpenseCost(key, expense);
+    });
+    return total;
+}
+
+// Расчет уровня риска
+function calculateRiskLevel() {
+    const missingCritical = ['purchase', 'transport'].some(key => !enabledExpenses.includes(key));
+    if (missingCritical) {
+        return { name: 'Критический', class: 'very-high' };
+    }
+    
+    const missingImportant = ['customs', 'warehouse', 'insurance'].some(key => !enabledExpenses.includes(key));
+    if (missingImportant) {
+        return { name: 'Очень высокий', class: 'high' };
+    }
+    
+    const missingRecommended = ['legal', 'certification'].some(key => !enabledExpenses.includes(key));
+    if (missingRecommended) {
+        return { name: 'Высокий', class: 'medium' };
+    }
+    
+    return { name: 'Низкий', class: 'low' };
+}
+
+// Обновление детализации
+function updateBreakdown(revenue, expenses, profit) {
+    const container = document.getElementById('breakdownList');
+    container.innerHTML = '';
+    
+    const items = [
+        { label: 'Выручка', value: revenue },
+        { label: 'Расходы', value: expenses },
+        { label: 'Прибыль', value: profit }
+    ];
+    
+    items.forEach(item => {
+        const element = document.createElement('div');
+        element.className = 'breakdown-item';
+        element.innerHTML = `
+            <span class="breakdown-label">${item.label}</span>
+            <span class="breakdown-value">${formatCurrency(item.value)}</span>
+        `;
+        container.appendChild(element);
+    });
+}
+
+// Обновление предупреждений
+function updateWarnings() {
+    const warnings = [];
+    
+    if (!enabledExpenses.includes('purchase')) {
+        warnings.push('Без закупки льна сделка невозможна');
+    }
+    
+    if (!enabledExpenses.includes('transport')) {
+        warnings.push('Груз не будет доставлен к покупателю');
+    }
+    
+    if (!enabledExpenses.includes('customs')) {
+        warnings.push('Груз застрянет на таможне');
+    }
+    
+    if (!enabledExpenses.includes('warehouse')) {
+        warnings.push('Некуда принимать и хранить груз');
+    }
+    
+    if (!enabledExpenses.includes('insurance')) {
+        warnings.push('Риск потери груза и неплатежа');
+    }
+    
+    if (!enabledExpenses.includes('legal')) {
+        warnings.push('Риск невыгодных контрактов');
+    }
+    
+    if (!enabledExpenses.includes('certification')) {
+        warnings.push('Проблемы с качеством и сертификацией');
+    }
+    
+    const warningsPanel = document.getElementById('warningsPanel');
+    const warningsList = document.getElementById('warningsList');
+    
+    if (warnings.length > 0) {
+        warningsList.innerHTML = warnings.map(warning => 
+            `<div class="warning-item">${warning}</div>`
+        ).join('');
+        warningsPanel.style.display = 'block';
+    } else {
+        warningsPanel.style.display = 'none';
+    }
+}
+
+// Загрузка пресета
+function loadPreset(presetKey) {
+    const preset = presets[presetKey];
+    enabledExpenses = [...preset.enabled];
+    
+    // Обновление кнопок
+    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    renderExpenses();
+    updateResults();
+}
+
+// Форматирование валюты
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(amount);
+}
+</script>
+
+</body>
+</html>

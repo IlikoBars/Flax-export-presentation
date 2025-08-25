@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Процесс экспорта льна - Пошаговое руководство</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soul: #F8F7F4;
+            --shadow: #1A1A1A;
+            --memory: #D4C4A8;
+            --whisper: #E8E0D0;
+            --gold: #B38B59;
+            --amber: #C4A484;
+            --earth: #9CAF88;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--soul);
+            color: var(--shadow);
+            line-height: 1.6;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--soul);
+            border-bottom: 1px solid var(--memory);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--amber);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--amber);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .process-step {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--amber));
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--soul);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .step-duration {
+            color: var(--amber);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .documents-list {
+            background: var(--whisper);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .documents-list h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--memory);
+        }
+
+        .document-item:last-child {
+            border-bottom: none;
+        }
+
+        .document-name {
+            font-weight: 500;
+            color: var(--shadow);
+        }
+
+        .document-cost {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .cost-breakdown {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--whisper);
+        }
+
+        .cost-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        .cost-label {
+            color: var(--shadow);
+        }
+
+        .cost-value {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--amber));
+        }
+
+        .timeline-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--shadow);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--amber);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .warning-box {
+            background: linear-gradient(45deg, #fff3cd, #ffeaa7);
+            border: 1px solid #fdcb6e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning-box h4 {
+            color: #d63031;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box ul {
+            color: var(--shadow);
+            padding-left: 1.5rem;
+        }
+
+        .footer {
+            background: var(--shadow);
+            color: var(--soul);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .timeline {
+                flex-direction: column;
+            }
+            
+            .document-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Анимации */
+        .process-step {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="nav">
+    <h1>📋 Процесс экспорта льна</h1>
+    <div class="nav-links">
+        <a href="index.html">← Назад к презентации</a>
+        <a href="glossary.html">Глоссарий</a>
+    </div>
+</nav>
+
+<!-- Контент -->
+<div class="content">
+    <h1>📋 Пошаговый процесс экспорта льна</h1>
+    <div class="subtitle">Детальное руководство по организации сделки от закупки до получения прибыли</div>
+
+    <!-- Общая временная шкала -->
+    <div class="timeline">
+        <div class="timeline-item">
+            <h4>Неделя 1-2</h4>
+            <p>Подготовка</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Неделя 3-4</h4>
+            <p>Закупка</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Неделя 5-8</h4>
+            <p>Логистика</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Неделя 9-12</h4>
+            <p>Продажа</p>
+        </div>
+    </div>
+
+    <!-- Этап 1: Подготовка -->
+    <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-title">Подготовительный этап</div>
+        <div class="step-duration">Неделя 1-2</div>
+        <div class="step-description">
+            Регистрация компании, подготовка документов, поиск поставщиков и покупателей, заключение предварительных соглашений.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Необходимые документы:</h4>
+            <div class="document-item">
+                <span class="document-name">Регистрация Sp. z o.o. в Польше</span>
+                <span class="document-cost">500 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Открытие банковского счета</span>
+                <span class="document-cost">200 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">LOI с польскими заводами</span>
+                <span class="document-cost">0 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Предварительные контракты</span>
+                <span class="document-cost">400 €</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Этап 2: Закупка -->
+    <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-title">Закупка льна в Казахстане</div>
+        <div class="step-duration">Неделя 3-4</div>
+        <div class="step-description">
+            Выбор поставщика, проверка качества, заключение контракта, оплата аванса, подготовка к отгрузке.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Документы для закупки:</h4>
+            <div class="document-item">
+                <span class="document-name">Контракт поставки (русский/казахский)</span>
+                <span class="document-cost">200 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат качества льна</span>
+                <span class="document-cost">100 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат происхождения</span>
+                <span class="document-cost">50 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Фитосанитарный сертификат</span>
+                <span class="document-cost">80 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Инспекция качества (SGS)</span>
+                <span class="document-cost">500 €</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Этап 3: Логистика -->
+    <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-title">Международная логистика</div>
+        <div class="step-duration">Неделя 5-8</div>
+        <div class="step-description">
+            Погрузка, транспортировка железной дорогой, таможенное оформление, доставка на склад в Польше.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Логистические документы:</h4>
+            <div class="document-item">
+                <span class="document-name">Железнодорожная накладная (CIM)</span>
+                <span class="document-cost">50 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">CMR накладная (автодоставка)</span>
+                <span class="document-cost">30 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Таможенная декларация (T1)</span>
+                <span class="document-cost">150 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат соответствия ЕС</span>
+                <span class="document-cost">200 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Страховой полис (Cargo)</span>
+                <span class="document-cost">300 €</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Этап 4: Таможня -->
+    <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-title">Таможенное оформление</div>
+        <div class="step-duration">1-3 дня</div>
+        <div class="step-description">
+            Подача документов, проверка груза, уплата пошлин и сборов, получение разрешения на выпуск.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Таможенные документы:</h4>
+            <div class="document-item">
+                <span class="document-name">Декларация на товары (DT)</span>
+                <span class="document-cost">100 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат EUR.1</span>
+                <span class="document-cost">50 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат A.TR</span>
+                <span class="document-cost">50 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Счет-фактура (Invoice)</span>
+                <span class="document-cost">0 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Упаковочный лист</span>
+                <span class="document-cost">0 €</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Этап 5: Склад -->
+    <div class="process-step">
+        <div class="step-number">5</div>
+        <div class="step-title">Складские операции</div>
+        <div class="step-duration">1-2 недели</div>
+        <div class="step-description">
+            Приемка груза, проверка качества, хранение, комплектация партий, подготовка к продаже.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Складские документы:</h4>
+            <div class="document-item">
+                <span class="document-name">Акт приемки груза</span>
+                <span class="document-cost">0 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат качества (ЕС)</span>
+                <span class="document-cost">150 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Складская расписка</span>
+                <span class="document-cost">0 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат веса и качества</span>
+                <span class="document-cost">100 €</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Этап 6: Продажа -->
+    <div class="process-step">
+        <div class="step-number">6</div>
+        <div class="step-title">Продажа и получение оплаты</div>
+        <div class="step-duration">Неделя 9-12</div>
+        <div class="step-description">
+            Поставка покупателю, проверка качества, выставление счета, получение оплаты, закрытие сделки.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Документы для продажи:</h4>
+            <div class="document-item">
+                <span class="document-name">Контракт купли-продажи</span>
+                <span class="document-cost">200 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Счет-фактура (VAT)</span>
+                <span class="document-cost">0 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Сертификат качества для покупателя</span>
+                <span class="document-cost">100 €</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">Акт приема-передачи</span>
+                <span class="document-cost">0 €</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Детальный расчет расходов -->
+    <div class="cost-breakdown">
+        <h3>💰 Детальный расчет расходов на 100 т льна</h3>
+        
+        <div class="cost-item">
+            <span class="cost-label">Закупка льна (550 €/т × 100 т)</span>
+            <span class="cost-value">55 000 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Железнодорожная перевозка (80 €/т × 100 т)</span>
+            <span class="cost-value">8 000 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Таможенные сборы (30 €/т × 100 т)</span>
+            <span class="cost-value">3 000 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Складские услуги (15 €/т × 100 т)</span>
+            <span class="cost-value">1 500 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Страхование груза</span>
+            <span class="cost-value">300 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Юридические услуги</span>
+            <span class="cost-value">1 000 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Сертификация и инспекция</span>
+            <span class="cost-value">1 030 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Банковские комиссии (0,5%)</span>
+            <span class="cost-value">395 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Непредвиденные расходы (5%)</span>
+            <span class="cost-value">3 500 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label"><strong>ИТОГО РАСХОДЫ</strong></span>
+            <span class="cost-value"><strong>73 725 €</strong></span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Выручка (790 €/т × 100 т)</span>
+            <span class="cost-value">79 000 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label"><strong>ВАЛОВАЯ ПРИБЫЛЬ</strong></span>
+            <span class="cost-value"><strong>5 275 €</strong></span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label">Налог CIT 9%</span>
+            <span class="cost-value">475 €</span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label"><strong>ЧИСТАЯ ПРИБЫЛЬ</strong></span>
+            <span class="cost-value"><strong>4 800 €</strong></span>
+        </div>
+        
+        <div class="cost-item">
+            <span class="cost-label"><strong>ROI</strong></span>
+            <span class="cost-value"><strong>6,5% за 3 месяца</strong></span>
+        </div>
+    </div>
+
+    <!-- Важные предупреждения -->
+    <div class="warning-box">
+        <h4>⚠️ Критические моменты для успеха сделки:</h4>
+        <ul>
+            <li><strong>Качество льна:</strong> Обязательно проведите независимую инспекцию перед закупкой</li>
+            <li><strong>Документы:</strong> Все сертификаты должны быть актуальными и правильно оформленными</li>
+            <li><strong>Таможня:</strong> Код ТН ВЭД 5301 - льняное волокно, 0% пошлина в ЕС</li>
+            <li><strong>Страхование:</strong> Обязательно застрахуйте груз на полную стоимость</li>
+            <li><strong>Платежи:</strong> Используйте аккредитив или предоплату для безопасности</li>
+            <li><strong>Валютные риски:</strong> Хеджируйте курс тенге/евро</li>
+        </ul>
+    </div>
+
+    <!-- Коды ТН ВЭД -->
+    <div class="process-step">
+        <h3>📋 Коды ТН ВЭД для льна</h3>
+        <div class="step-description">
+            Правильная классификация товара критически важна для таможенного оформления.
+        </div>
+        
+        <div class="documents-list">
+            <h4>📄 Основные коды:</h4>
+            <div class="document-item">
+                <span class="document-name">5301 10 000 - Льняное волокно, нечесаное</span>
+                <span class="document-cost">0% пошлина</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">5301 21 000 - Льняное волокно, чесаное</span>
+                <span class="document-cost">0% пошлина</span>
+            </div>
+            <div class="document-item">
+                <span class="document-name">5301 29 000 - Льняное волокно прочее</span>
+                <span class="document-cost">0% пошлина</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>Процесс экспорта льна | Пошаговое руководство</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--memory);">© 2024. Все права защищены.</p>
+</div>
+
+</body>
+</html>
