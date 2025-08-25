@@ -246,30 +246,115 @@
                 visibility: visible;
             }
 
+            /* Мобильное меню */
+            .mobile-menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--shadow);
+                cursor: pointer;
+                padding: 0.5rem;
+                transition: color 0.3s ease;
+            }
+
+            .mobile-menu-toggle:hover {
+                color: var(--gold);
+            }
+
+            .mobile-menu-toggle .hamburger {
+                width: 25px;
+                height: 3px;
+                background: currentColor;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-toggle .hamburger::before,
+            .mobile-menu-toggle .hamburger::after {
+                content: '';
+                position: absolute;
+                width: 25px;
+                height: 3px;
+                background: currentColor;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-toggle .hamburger::before {
+                top: -8px;
+            }
+
+            .mobile-menu-toggle .hamburger::after {
+                bottom: -8px;
+            }
+
+            .mobile-menu-toggle.active .hamburger {
+                background: transparent;
+            }
+
+            .mobile-menu-toggle.active .hamburger::before {
+                transform: rotate(45deg);
+                top: 0;
+            }
+
+            .mobile-menu-toggle.active .hamburger::after {
+                transform: rotate(-45deg);
+                bottom: 0;
+            }
+
             @media (max-width: 768px) {
-                .nav {
-                    padding: 0.8rem 1rem;
-                    flex-direction: column;
-                    gap: 0.5rem;
-                    height: auto;
-                    min-height: 60px;
-                }
+                            .nav {
+                padding: 0.8rem 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                height: auto;
+                min-height: 60px;
+                position: relative;
+            }
                 
                 .nav h1 {
                     font-size: 1.2rem;
                     margin: 0;
                 }
                 
-                .nav-links {
-                    gap: 0.8rem;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-                
-                .nav-links a {
-                    font-size: 0.9rem;
-                    padding: 0.3rem 0.6rem;
-                }
+                            /* Мобильное меню */
+            .mobile-menu-toggle {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 101;
+            }
+
+            .nav-links {
+                display: none; /* Скрываем навигацию по умолчанию */
+                flex-direction: column;
+                width: 100%;
+                background: var(--soul);
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--memory);
+                border-bottom: 1px solid var(--memory);
+                position: absolute;
+                top: 60px; /* Высота навигации */
+                left: 0;
+                z-index: 100;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.8rem 0;
+                border-bottom: 1px solid var(--memory);
+                text-align: center;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
                 
                 .content {
                     margin-top: 60px;
@@ -423,7 +508,10 @@
     <!-- Навигация -->
     <nav class="nav">
         <h1>📚 Глоссарий терминов</h1>
-        <div class="nav-links">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <div class="hamburger"></div>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">← Назад к презентации</a>
         </div>
     </nav>
@@ -947,6 +1035,35 @@
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Мобильное меню
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+                
+                // Закрываем меню при клике на ссылку
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+                
+                // Закрываем меню при клике вне его
+                document.addEventListener('click', function(e) {
+                    if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
         });
 
         // Проверяем хэш в URL для перехода к конкретному термину
