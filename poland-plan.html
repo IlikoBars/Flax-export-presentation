@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>План экспорта льна через Польшу - Детальная стратегия</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soul: #F8F7F4;
+            --shadow: #1A1A1A;
+            --memory: #D4C4A8;
+            --whisper: #E8E0D0;
+            --gold: #B38B59;
+            --amber: #C4A484;
+            --earth: #9CAF88;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--soul);
+            color: var(--shadow);
+            line-height: 1.6;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--soul);
+            border-bottom: 1px solid var(--memory);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--amber);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--amber);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            border-color: var(--gold);
+            background: var(--whisper);
+        }
+
+        .tab.active {
+            background: var(--gold);
+            color: var(--soul);
+            border-color: var(--gold);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-week {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--amber);
+            font-size: 0.9rem;
+        }
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .structure-card {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .structure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--amber));
+        }
+
+        .structure-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .structure-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .structure-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--whisper);
+        }
+
+        .structure-card li:last-child {
+            border-bottom: none;
+        }
+
+        .contracts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .contract-card {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .contract-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--success), var(--earth));
+        }
+
+        .contract-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .contract-parties {
+            color: var(--amber);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .contract-details {
+            background: var(--whisper);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .contract-details h5 {
+            color: var(--shadow);
+            margin-bottom: 0.5rem;
+        }
+
+        .contract-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contract-details li {
+            padding: 0.3rem 0;
+            color: var(--shadow);
+        }
+
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .risk-card {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .risk-level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .risk-low {
+            background: var(--success);
+            color: var(--soul);
+        }
+
+        .risk-medium {
+            background: var(--warning);
+            color: var(--shadow);
+        }
+
+        .risk-high {
+            background: var(--danger);
+            color: var(--soul);
+        }
+
+        .risk-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            padding-right: 4rem;
+        }
+
+        .risk-description {
+            color: var(--amber);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .risk-mitigation {
+            background: var(--whisper);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .financial-summary {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .financial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .financial-item {
+            text-align: center;
+        }
+
+        .financial-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .financial-label {
+            color: var(--amber);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .document-checklist {
+            background: var(--whisper);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--memory);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            accent-color: var(--success);
+        }
+
+        .checklist-text {
+            flex: 1;
+        }
+
+        .checklist-deadline {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: var(--shadow);
+            color: var(--soul);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .structure-grid,
+            .contracts-grid,
+            .risk-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="nav">
+    <h1>🇵🇱 План Польша</h1>
+    <div class="nav-links">
+        <a href="index.html">← Назад к презентации</a>
+        <a href="germany-plan.html">Германия</a>
+        <a href="agency-plan.html">Агентская</a>
+        <a href="calculator.html">Калькулятор</a>
+    </div>
+</nav>
+
+<!-- Контент -->
+<div class="content">
+    <h1>🇵🇱 Экспорт льна через Польшу</h1>
+    <div class="subtitle">Оптимальный план с быстрым стартом и низкими налогами</div>
+
+    <!-- Табы навигации -->
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('timeline')">📅 План реализации</div>
+        <div class="tab" onclick="showTab('structure')">🏢 Структура сделки</div>
+        <div class="tab" onclick="showTab('contracts')">📋 Контракты</div>
+        <div class="tab" onclick="showTab('risks')">⚠️ Риски и защита</div>
+        <div class="tab" onclick="showTab('finance')">💰 Финансы</div>
+        <div class="tab" onclick="showTab('documents')">📄 Документы</div>
+    </div>
+
+    <!-- План реализации -->
+    <div id="timeline" class="tab-content active">
+        <h2>📅 12-недельный план реализации</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-week">Неделя 1-2</div>
+                <div class="timeline-title">Быстрая регистрация</div>
+                <div class="timeline-description">
+                    Регистрация Sp. z o.o. (1 день), открытие счета, подготовка документов, поиск контрагентов
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Неделя 3-4</div>
+                <div class="timeline-title">Закупка и контракты</div>
+                <div class="timeline-description">
+                    Заключение контракта с поставщиком, оплата аванса, подготовка к отгрузке
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Неделя 5-8</div>
+                <div class="timeline-title">Логистика и таможня</div>
+                <div class="timeline-description">
+                    Погрузка, транспортировка железной дорогой, таможенное оформление, доставка в Польшу
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Неделя 9-10</div>
+                <div class="timeline-title">Складские операции</div>
+                <div class="timeline-description">
+                    Приемка груза, проверка качества, хранение, подготовка к продаже
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Неделя 11-12</div>
+                <div class="timeline-title">Продажа и получение оплаты</div>
+                <div class="timeline-description">
+                    Поставка покупателю, выставление счета, получение оплаты, закрытие сделки
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Структура сделки -->
+    <div id="structure" class="tab-content">
+        <h2>🏢 Структура собственности и контроля</h2>
+        <div class="structure-grid">
+            <div class="structure-card">
+                <h4>👤 Инвестор (дядя)</h4>
+                <ul>
+                    <li><strong>Роль:</strong> 100% владелец Sp. z o.o.</li>
+                    <li><strong>Обязанности:</strong> Финансирование, подписание контрактов</li>
+                    <li><strong>Контроль:</strong> Все финансовые операции</li>
+                    <li><strong>Защита:</strong> Ограниченная ответственность Sp. z o.o.</li>
+                </ul>
+            </div>
+            
+            <div class="structure-card">
+                <h4>👨‍💼 Оператор (вы)</h4>
+                <ul>
+                    <li><strong>Роль:</strong> Директор Sp. z o.o.</li>
+                    <li><strong>Обязанности:</strong> Организация сделок, переговоры</li>
+                    <li><strong>Контроль:</strong> Операционные вопросы</li>
+                    <li><strong>Защита:</strong> Рабочий контракт, страхование</li>
+                </ul>
+            </div>
+            
+            <div class="structure-card">
+                <h4>🏦 Польский банк</h4>
+                <ul>
+                    <li><strong>Роль:</strong> Финансовый посредник</li>
+                    <li><strong>Обязанности:</strong> Переводы, конвертация валют</li>
+                    <li><strong>Контроль:</strong> Соответствие AML/KYC</li>
+                    <li><strong>Защита:</strong> Банковская гарантия</li>
+                </ul>
+            </div>
+            
+            <div class="structure-card">
+                <h4>⚖️ Польский юрист</h4>
+                <ul>
+                    <li><strong>Роль:</strong> Правовое сопровождение</li>
+                    <li><strong>Обязанности:</strong> Контракты, проверка контрагентов</li>
+                    <li><strong>Контроль:</strong> Соответствие польскому законодательству</li>
+                    <li><strong>Защита:</strong> Professional Indemnity Insurance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Контракты -->
+    <div id="contracts" class="tab-content">
+        <h2>📋 Необходимые контракты</h2>
+        <div class="contracts-grid">
+            <div class="contract-card">
+                <div class="contract-title">Контракт поставки (Казахстан)</div>
+                <div class="contract-parties">Sp. z o.o. ↔ Казахстанский поставщик</div>
+                <div class="contract-details">
+                    <h5>Ключевые условия:</h5>
+                    <ul>
+                        <li>Предоплата 30% при подписании</li>
+                        <li>Оплата 70% при отгрузке</li>
+                        <li>Incoterms: CIP Польша</li>
+                        <li>Качество: ГОСТ 20548-75</li>
+                        <li>Арбитраж: ICC Париж</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contract-card">
+                <div class="contract-title">Контракт купли-продажи (Польша)</div>
+                <div class="contract-parties">Sp. z o.o. ↔ Польский покупатель</div>
+                <div class="contract-details">
+                    <h5>Ключевые условия:</h5>
+                    <ul>
+                        <li>Оплата: 30 дней после поставки</li>
+                        <li>Incoterms: DAP Польша</li>
+                        <li>Качество: PN стандарты</li>
+                        <li>Арбитраж: Sąd Arbitrażowy Варшава</li>
+                        <li>НДС: 23% (возврат)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contract-card">
+                <div class="contract-title">NDA + Non-Circumvention</div>
+                <div class="contract-parties">Sp. z o.o. ↔ Все контрагенты</div>
+                <div class="contract-details">
+                    <h5>Защита интересов:</h5>
+                    <ul>
+                        <li>Конфиденциальность цен и условий</li>
+                        <li>Запрет обхода посредника</li>
+                        <li>Штраф: 50% от суммы сделки</li>
+                        <li>Срок действия: 5 лет</li>
+                        <li>Юрисдикция: Польша</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contract-card">
+                <div class="contract-title">Рабочий контракт</div>
+                <div class="contract-parties">Sp. z o.o. ↔ Оператор</div>
+                <div class="contract-details">
+                    <h5>Условия сотрудничества:</h5>
+                    <ul>
+                        <li>Зарплата: 5% от прибыли</li>
+                        <li>Бонус: 2% при превышении плана</li>
+                        <li>Страхование: D&O Insurance</li>
+                        <li>Конфиденциальность: пожизненно</li>
+                        <li>Конкуренция: запрет 3 года</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Риски и защита -->
+    <div id="risks" class="tab-content">
+        <h2>⚠️ Риски и меры защиты</h2>
+        <div class="risk-matrix">
+            <div class="risk-card">
+                <div class="risk-level risk-high">Высокий</div>
+                <div class="risk-title">Качество товара</div>
+                <div class="risk-description">Поставка некачественного льна</div>
+                <div class="risk-mitigation">
+                    <strong>Защита:</strong> Независимая инспекция SGS, Performance Bond поставщика, право на отказ
+                </div>
+            </div>
+            
+            <div class="risk-card">
+                <div class="risk-level risk-medium">Средний</div>
+                <div class="risk-title">Валютные риски</div>
+                <div class="risk-description">Колебания курса тенге/евро</div>
+                <div class="risk-mitigation">
+                    <strong>Защита:</strong> Хеджирование через банк, форвардные контракты, диверсификация валют
+                </div>
+            </div>
+            
+            <div class="risk-card">
+                <div class="risk-level risk-low">Низкий</div>
+                <div class="risk-title">Неплатеж покупателя</div>
+                <div class="risk-description">Отказ от оплаты товара</div>
+                <div class="risk-mitigation">
+                    <strong>Защита:</strong> Trade Credit Insurance, авансовые платежи, банковские гарантии
+                </div>
+            </div>
+            
+            <div class="risk-card">
+                <div class="risk-level risk-medium">Средний</div>
+                <div class="risk-title">Таможенные проблемы</div>
+                <div class="risk-description">Задержки, штрафы, конфискация</div>
+                <div class="risk-mitigation">
+                    <strong>Защита:</strong> Профессиональный таможенный брокер, предварительная проверка документов
+                </div>
+            </div>
+            
+            <div class="risk-card">
+                <div class="risk-level risk-low">Низкий</div>
+                <div class="risk-title">Политические риски</div>
+                <div class="risk-description">Изменение законодательства</div>
+                <div class="risk-mitigation">
+                    <strong>Защита:</strong> Political Risk Insurance, мониторинг законодательства, диверсификация
+                </div>
+            </div>
+            
+            <div class="risk-card">
+                <div class="risk-level risk-medium">Средний</div>
+                <div class="risk-title">Логистические риски</div>
+                <div class="risk-description">Задержки, повреждения груза</div>
+                <div class="risk-mitigation">
+                    <strong>Защита:</strong> Cargo Insurance, проверенные экспедиторы, GPS-мониторинг
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Финансы -->
+    <div id="finance" class="tab-content">
+        <h2>💰 Финансовое планирование</h2>
+        <div class="financial-summary">
+            <h3>Расчет на 100 тонн льна</h3>
+            <div class="financial-grid">
+                <div class="financial-item">
+                    <div class="financial-value">79 000 €</div>
+                    <div class="financial-label">Выручка</div>
+                </div>
+                <div class="financial-item">
+                    <div class="financial-value">73 725 €</div>
+                    <div class="financial-label">Расходы</div>
+                </div>
+                <div class="financial-item">
+                    <div class="financial-value">5 275 €</div>
+                    <div class="financial-label">Валовая прибыль</div>
+                </div>
+                <div class="financial-item">
+                    <div class="financial-value">475 €</div>
+                    <div class="financial-label">Налог (9%)</div>
+                </div>
+                <div class="financial-item">
+                    <div class="financial-value">4 800 €</div>
+                    <div class="financial-label">Чистая прибыль</div>
+                </div>
+                <div class="financial-item">
+                    <div class="financial-value">6,5%</div>
+                    <div class="financial-label">ROI за 3 месяца</div>
+                </div>
+            </div>
+        </div>
+        
+        <h3>Налоговая оптимизация в Польше</h3>
+        <div class="structure-grid">
+            <div class="structure-card">
+                <h4>📊 CIT (Corporate Income Tax)</h4>
+                <ul>
+                    <li>Базовая ставка: 19%</li>
+                    <li>Льготная ставка: 9% (до 2 млн PLN)</li>
+                    <li>Применение: Первые 2 года</li>
+                    <li>Экономия: ~1 000 € на 100 т</li>
+                </ul>
+            </div>
+            
+            <div class="structure-card">
+                <h4>💰 НДС (VAT)</h4>
+                <ul>
+                    <li>Базовая ставка: 23%</li>
+                    <li>Экспорт: 0%</li>
+                    <li>Возврат НДС: 30 дней</li>
+                    <li>Экономия: ~18 000 € на 100 т</li>
+                </ul>
+            </div>
+            
+            <div class="structure-card">
+                <h4>🏦 Банковские услуги</h4>
+                <ul>
+                    <li>Комиссии: 0,3-0,5%</li>
+                    <li>Конвертация: 0,1-0,3%</li>
+                    <li>Скорость: 1-2 дня</li>
+                    <li>Стоимость: ~395 € на 100 т</li>
+                </ul>
+            </div>
+            
+            <div class="structure-card">
+                <h4>📈 Инвестиционные льготы</h4>
+                <ul>
+                    <li>Освобождение от CIT: 50%</li>
+                    <li>Условие: инвестиции в развитие</li>
+                    <li>Срок: до 15 лет</li>
+                    <li>Применение: при масштабировании</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Документы -->
+    <div id="documents" class="tab-content">
+        <h2>📄 Чек-лист документов</h2>
+        <div class="document-checklist">
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Регистрация Sp. z o.o. в Польше</div>
+                <div class="checklist-deadline">Неделя 1</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Открытие банковского счета</div>
+                <div class="checklist-deadline">Неделя 1</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Контракт поставки с казахстанским поставщиком</div>
+                <div class="checklist-deadline">Неделя 3</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Контракт купли-продажи с польским покупателем</div>
+                <div class="checklist-deadline">Неделя 3</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">NDA и Non-Circumvention соглашения</div>
+                <div class="checklist-deadline">Неделя 2</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Страховые полисы (Cargo, Trade Credit, D&O)</div>
+                <div class="checklist-deadline">Неделя 2</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Сертификат качества льна (SGS)</div>
+                <div class="checklist-deadline">Неделя 4</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Фитосанитарный сертификат</div>
+                <div class="checklist-deadline">Неделя 4</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Сертификат происхождения EUR.1</div>
+                <div class="checklist-deadline">Неделя 4</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Таможенная декларация (T1)</div>
+                <div class="checklist-deadline">Неделя 6</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">CMR накладная</div>
+                <div class="checklist-deadline">Неделя 6</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Счет-фактура (Invoice)</div>
+                <div class="checklist-deadline">Неделя 11</div>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" class="checklist-checkbox">
+                <div class="checklist-text">Акт приема-передачи</div>
+                <div class="checklist-deadline">Неделя 11</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>План экспорта льна через Польшу | Детальная стратегия</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--memory);">© 2024. Все права защищены.</p>
+</div>
+
+<script>
+function showTab(tabName) {
+    // Скрываем все табы
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Убираем активный класс у всех табов
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Показываем выбранный таб
+    document.getElementById(tabName).classList.add('active');
+    
+    // Добавляем активный класс к выбранному табу
+    event.target.classList.add('active');
+}
+
+// Сохранение состояния чекбоксов
+document.querySelectorAll('.checklist-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        localStorage.setItem('poland-' + this.closest('.checklist-item').querySelector('.checklist-text').textContent, this.checked);
+    });
+    
+    // Восстановление состояния при загрузке
+    const savedState = localStorage.getItem('poland-' + this.closest('.checklist-item').querySelector('.checklist-text').textContent);
+    if (savedState === 'true') {
+        this.checked = true;
+    }
+});
+</script>
+
+</body>
+</html>
