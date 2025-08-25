@@ -462,6 +462,169 @@
             .risk-matrix {
                 grid-template-columns: 1fr;
             }
+            
+            /* Мобильные улучшения */
+            .nav {
+                padding: 0.8rem 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                height: auto;
+                min-height: 60px;
+            }
+            
+            .nav h1 {
+                font-size: 1.2rem;
+                margin: 0;
+            }
+            
+            .nav-links {
+                gap: 0.8rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .content {
+                margin-top: 60px;
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .tabs {
+                gap: 0.5rem;
+            }
+            
+            .tab {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .structure-card,
+            .contract-card,
+            .risk-card {
+                padding: 1.5rem;
+            }
+            
+            .financial-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .financial-value {
+                font-size: 1.5rem;
+            }
+            
+            .financial-label {
+                font-size: 0.8rem;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+            }
+            
+            .timeline-item {
+                margin-bottom: 1.5rem;
+                padding-left: 1.5rem;
+            }
+            
+            .document-checklist {
+                padding: 1.5rem;
+            }
+            
+            .checklist-item {
+                padding: 0.6rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav {
+                padding: 0.5rem;
+            }
+            
+            .nav h1 {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+            
+            .content {
+                margin-top: 50px;
+                padding: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+            }
+            
+            .tab {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .structure-card,
+            .contract-card,
+            .risk-card {
+                padding: 1rem;
+            }
+            
+            .financial-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            .financial-value {
+                font-size: 1.3rem;
+            }
+            
+            .financial-label {
+                font-size: 0.7rem;
+            }
+            
+            .document-checklist {
+                padding: 1rem;
+            }
+            
+            .checklist-item {
+                padding: 0.5rem 0;
+            }
         }
     </style>
 </head>
