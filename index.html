@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экспорт льна из Казахстана в Европу - Инвестиционное предложение</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soul: #F8F7F4;
+            --shadow: #1A1A1A;
+            --memory: #D4C4A8;
+            --whisper: #E8E0D0;
+            --gold: #B38B59;
+            --amber: #C4A484;
+            --earth: #9CAF88;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--soul);
+            color: var(--shadow);
+            line-height: 1.6;
+        }
+
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .password-form {
+            background: var(--soul);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid var(--memory);
+        }
+
+        .password-form h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .password-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--memory);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .password-form button {
+            background: var(--gold);
+            color: var(--soul);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .password-form button:hover {
+            background: var(--amber);
+        }
+
+        .error {
+            color: #e74c3c;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--soul);
+            border-bottom: 1px solid var(--memory);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--amber);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--whisper) 0%, var(--memory) 100%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--amber);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .highlight-box {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(180, 139, 89, 0.1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--amber));
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(180, 139, 89, 0.15);
+        }
+
+        .card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .card li::before {
+            content: '•';
+            color: var(--gold);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--earth));
+        }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--soul);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--memory);
+        }
+
+        .table th {
+            background: var(--gold);
+            color: var(--soul);
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--whisper);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .table tr:nth-child(even) {
+            background: var(--whisper);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            flex: 1;
+            min-width: 250px;
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--amber));
+        }
+
+        .timeline-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--amber);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .risk-table {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .risk-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--whisper);
+        }
+
+        .risk-table td:first-child {
+            font-weight: 500;
+            color: var(--shadow);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .risk-table td:last-child {
+            color: var(--earth);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .arrow {
+            color: var(--gold);
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+
+        .footer {
+            background: var(--shadow);
+            color: var(--soul);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--gold), var(--amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .term-link {
+            color: var(--gold);
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .term-link:hover {
+            color: var(--amber);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .slide {
+                padding: 2rem 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Анимации */
+        .slide {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card, .stat-card, .timeline-item {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Защита паролем -->
+<div class="password-overlay" id="passwordOverlay">
+    <div class="password-form">
+        <h2>🔐 Доступ к презентации</h2>
+        <p style="margin-bottom: 2rem; color: var(--amber);">Введите пароль для просмотра инвестиционного предложения</p>
+        <input type="password" id="passwordInput" placeholder="Введите пароль">
+        <button onclick="checkPassword()">Войти</button>
+        <div class="error" id="errorMessage">Неверный пароль. Попробуйте снова.</div>
+    </div>
+</div>
+
+<!-- Навигация -->
+<nav class="nav">
+    <h1>🌾 Экспорт льна</h1>
+    <div class="nav-links">
+        <a href="#presentation">Презентация</a>
+        <a href="glossary.html">Глоссарий</a>
+        <a href="#contact">Контакты</a>
+    </div>
+</nav>
+
+<!-- Контент -->
+<div class="content" id="mainContent" style="display: none;">
+
+<!-- Слайд 1: Титульный -->
+<div class="slide">
+    <div class="container">
+        <h1 class="gradient-text">🌾 Экспорт льна из Казахстана в Европу</h1>
+        <div class="subtitle">Инвестиционное предложение</div>
+        <div class="highlight-box">
+            <p style="font-size: 1.3rem; margin: 0; font-family: 'Playfair Display', serif;">Подготовил: [Ваше имя]</p>
+            <p style="font-size: 1.1rem; margin: 10px 0 0 0; color: var(--amber);">Дата: [Текущая дата]</p>
+            <p style="font-size: 1.1rem; margin: 5px 0 0 0; color: var(--amber);">Инвестор: [Имя дяди]</p>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 2: Бизнес-идея -->
+<div class="slide">
+    <div class="container">
+        <h2>🎯 Бизнес-идея</h2>
+        <h3>Экспорт льна из Казахстана в Европу</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>🎯 Цель проекта</h4>
+                <ul>
+                    <li>Закупать лён у казахстанских фермеров</li>
+                    <li>Продавать в Европе (Польша/Германия)</li>
+                    <li>Получать гарантированную <span class="term-link" onclick="showTerm('маржа')">маржу</span> 130 €/т</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🌍 География</h4>
+                <ul>
+                    <li><strong>Казахстан</strong> → стабильный источник сырья</li>
+                    <li><strong>Европа (Польша)</strong> → высокий спрос</li>
+                    <li><strong>Наша фирма</strong> → надёжный оператор</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>💡 Конкурентные преимущества</h4>
+                <ul>
+                    <li>Прямые связи с казахстанскими фермерами</li>
+                    <li>Готовая компания в ЕС</li>
+                    <li>Знание местного рынка и <span class="term-link" onclick="showTerm('логистика')">логистики</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 3: Почему именно лён -->
+<div class="slide">
+    <div class="container">
+        <h2>🌱 Почему именно лён?</h2>
+        <h3>Растущий рынок в Европе</h3>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">+15%</div>
+                <div class="stat-label">Рост спроса в ЕС в год</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">550€</div>
+                <div class="stat-label">Закупка в Казахстане</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">790€</div>
+                <div class="stat-label">Продажа в Польше</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">130€</div>
+                <div class="stat-label">Маржа с тонны</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>📈 Рыночные тренды</h4>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Спрос в ЕС растет на 15% в год</li>
+                <li>Экологичность - главный тренд</li>
+                <li>Стабильные цены, низкая <span class="term-link" onclick="showTerm('волатильность')">волатильность</span></li>
+                <li>ЕС поддерживает "зеленую" экономику</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 4: Коммерческая модель -->
+<div class="slide">
+    <div class="container">
+        <h2>💼 Коммерческая модель</h2>
+        <h3>Три варианта реализации</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>🇩🇪 Вариант A (Германия)</h4>
+                <ul>
+                    <li>Доверие и долгосрочные контракты</li>
+                    <li>Чистая прибыль: ~9 100 € / 100 т</li>
+                    <li>Высокая репутация</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🇵🇱 Вариант B (Польша)</h4>
+                <ul>
+                    <li>Быстрый старт, низкие налоги</li>
+                    <li>Чистая прибыль: ~11 800 € / 100 т</li>
+                    <li>Оптимальное соотношение риск/доход</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🤝 Агентская модель</h4>
+                <ul>
+                    <li>Минимальные риски</li>
+                    <li><span class="term-link" onclick="showTerm('комиссия')">Комиссия</span> 5-7% (~4-5,5k € / 100 т)</li>
+                    <li>Без собственных инвестиций</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>💡 Рекомендация: Начать с Польши (Sp. z o.o.)</h4>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 5: Финансовые расчёты -->
+<div class="slide">
+    <div class="container">
+        <h2>💰 Финансовые расчёты (100 т)</h2>
+        <h3>Сравнение моделей</h3>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Модель</th>
+                    <th>Чистая прибыль (100 т)</th>
+                    <th><span class="term-link" onclick="showTerm('ROI')">ROI</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Германия (~30% налог)</td>
+                    <td>~9 100 €</td>
+                    <td>13,8%</td>
+                </tr>
+                <tr>
+                    <td>Польша (9% CIT)</td>
+                    <td>~11 800 €</td>
+                    <td>17,9%</td>
+                </tr>
+                <tr>
+                    <td>Польша (19% CIT)</td>
+                    <td>~10 500 €</td>
+                    <td>15,9%</td>
+                </tr>
+                <tr>
+                    <td>Агентская (5%)</td>
+                    <td>~3 950 €</td>
+                    <td>6,0%</td>
+                </tr>
+                <tr>
+                    <td>Агентская (7%)</td>
+                    <td>~5 530 €</td>
+                    <td>8,4%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Слайд 6: Стратегия развития -->
+<div class="slide">
+    <div class="container">
+        <h2>📈 Стратегия развития</h2>
+        <h3>Поэтапный подход</h3>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>🚀 Этап 1: Тестовая сделка</h4>
+                <p>2-3 месяца</p>
+                <ul>
+                    <li>100 т через польскую Sp. z o.o.</li>
+                    <li>Чистая прибыль: ~11 800 €</li>
+                    <li>Проверка модели на практике</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>📈 Этап 2: Масштабирование</h4>
+                <p>6-12 месяцев</p>
+                <ul>
+                    <li>1000 т/год через немецкую GmbH</li>
+                    <li>Чистая прибыль: ~91 000 €/год</li>
+                    <li>Строительство репутации</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>🌍 Этап 3: Расширение</h4>
+                <p>1-2 года</p>
+                <ul>
+                    <li><span class="term-link" onclick="showTerm('диверсификация')">Диверсификация</span> товаров</li>
+                    <li>Прямые контракты с заводами</li>
+                    <li>Выход на новые рынки</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 7: Защита активов инвестора -->
+<div class="slide">
+    <div class="container">
+        <h2>🛡️ Защита активов инвестора</h2>
+        <h3>Структура собственности и контроля</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>🏢 Структура сделки</h4>
+                <ul>
+                    <li><strong>Инвестор (дядя)</strong> = 100% владелец компании</li>
+                    <li><strong>Оператор (вы)</strong> = директор с ограниченными полномочиями</li>
+                    <li>Все контракты подписывает только инвестор</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🔒 Меры защиты</h4>
+                <ul>
+                    <li>Поэтапное финансирование</li>
+                    <li>Право вето на любом этапе</li>
+                    <li>Ежемесячная отчетность</li>
+                    <li>Личная ответственность оператора</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>💰 Контроль финансов</h4>
+                <ul>
+                    <li>Все банковские счета контролирует инвестор</li>
+                    <li>Прибыль распределяется только после успешной сделки</li>
+                    <li><span class="term-link" onclick="showTerm('escrow')">Escrow account</span> для крупных сделок</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 8: Юридическая защита -->
+<div class="slide">
+    <div class="container">
+        <h2>⚖️ Юридическая защита сделки</h2>
+        <h3>Минимизация рисков</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>📋 Контракты</h4>
+                <ul>
+                    <li>Договор поставки (Казахстан)</li>
+                    <li>Договор с покупателем (Польша)</li>
+                    <li><span class="term-link" onclick="showTerm('NDA')">NDA</span> + non-circumvention</li>
+                    <li><span class="term-link" onclick="showTerm('performance-bond')">Performance bond</span></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🌐 <span class="term-link" onclick="showTerm('инкотермс')">Инкотермс</span></h4>
+                <ul>
+                    <li>CIP / DAP — поставщик несёт ответственность до доставки</li>
+                    <li>Защита от логистических рисков</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>💳 Оплата</h4>
+                <ul>
+                    <li>Аванс из собственных средств инвестора</li>
+                    <li>Контроль всех условий</li>
+                    <li>Поэтапные платежи</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>📜 Сертификаты: качество, происхождение, фитосанитарные документы</h4>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 9: Страхование -->
+<div class="slide">
+    <div class="container">
+        <h2>🛡️ Страхование сделки</h2>
+        <h3>Полная защита на каждом этапе</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>🚚 <span class="term-link" onclick="showTerm('cargo-insurance')">Cargo Insurance</span></h4>
+                <p>Защита груза от повреждений, кражи, пожара</p>
+                <div class="stat-number" style="font-size: 1.5rem; margin-top: 1rem;">~300 €</div>
+            </div>
+            
+            <div class="card">
+                <h4>📦 <span class="term-link" onclick="showTerm('cmr-insurance')">CMR Insurance</span></h4>
+                <p>Ответственность перевозчика</p>
+                <div class="stat-number" style="font-size: 1.5rem; margin-top: 1rem;">~200 €</div>
+            </div>
+            
+            <div class="card">
+                <h4>💳 <span class="term-link" onclick="showTerm('trade-credit-insurance')">Trade Credit Insurance</span></h4>
+                <p>Защита от неплатежа покупателя</p>
+                <div class="stat-number" style="font-size: 1.5rem; margin-top: 1rem;">~200 €</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>💰 Общая стоимость защиты: ~700 €</h4>
+            <p>Это всего 5-6% от прибыли при партии в 100 т</p>
+            <h4>✅ Чистая прибыль после всех страховок: ~12 300 €</h4>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 10: Почему НЕ аккредитив -->
+<div class="slide">
+    <div class="container">
+        <h2>❌ Почему НЕ используем <span class="term-link" onclick="showTerm('аккредитив')">аккредитив</span></h2>
+        <h3>Обоснование решения</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>❌ Проблемы аккредитива</h4>
+                <ul>
+                    <li>Стоимость: 0,2-0,5% сделки (~200-400 € на 100 т)</li>
+                    <li>Сложный документооборот</li>
+                    <li>Риск задержек из-за ошибок в бумагах</li>
+                    <li>Реально защищает поставщика, а не нас</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>✅ Наше решение</h4>
+                <ul>
+                    <li>Собственный капитал инвестора</li>
+                    <li>Комплексное страхование</li>
+                    <li>Поэтапные платежи</li>
+                    <li>Личные гарантии оператора</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>💡 Результат: Экономия 200-400 € + упрощение процесса</h4>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 11: Риски и решения -->
+<div class="slide">
+    <div class="container">
+        <h2>⚠️ Риски и решения</h2>
+        <h3>Комплексный подход к управлению рисками</h3>
+        
+        <table class="risk-table">
+            <tr>
+                <td>Качество сырья</td>
+                <td class="arrow">→</td>
+                <td>Независимая инспекция (SGS/Bureau Veritas)</td>
+            </tr>
+            <tr>
+                <td>Обход посредника</td>
+                <td class="arrow">→</td>
+                <td>NDA + non-circumvention + эксклюзивные контракты</td>
+            </tr>
+            <tr>
+                <td><span class="term-link" onclick="showTerm('НДС')">НДС</span> и таможня</td>
+                <td class="arrow">→</td>
+                <td>0% пошлина (код ТН ВЭД 5301), возврат VAT</td>
+            </tr>
+            <tr>
+                <td>Неоплата</td>
+                <td class="arrow">→</td>
+                <td>Страхование платежа + личные гарантии</td>
+            </tr>
+            <tr>
+                <td>Логистика</td>
+                <td class="arrow">→</td>
+                <td>Работа с проверенными экспедиторами</td>
+            </tr>
+            <tr>
+                <td>Валютные риски</td>
+                <td class="arrow">→</td>
+                <td><span class="term-link" onclick="showTerm('хеджирование')">Хеджирование</span> + страховка</td>
+            </tr>
+            <tr>
+                <td>Политические риски</td>
+                <td class="arrow">→</td>
+                <td>Political Risk Insurance</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Слайд 12: Команда -->
+<div class="slide">
+    <div class="container">
+        <h2>👥 Команда и компетенции</h2>
+        <h3>Кто и что делает</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>👤 Оператор (вы)</h4>
+                <ul>
+                    <li>Организация сделки</li>
+                    <li>Переговоры с поставщиками и покупателями</li>
+                    <li>Логистика и координация</li>
+                    <li>Отчетность инвестору</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🏢 Инвестор (дядя)</h4>
+                <ul>
+                    <li>Финансирование проекта</li>
+                    <li>Контроль всех операций</li>
+                    <li>Принятие ключевых решений</li>
+                    <li>Защита активов</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🔮 В перспективе</h4>
+                <ul>
+                    <li>Логистический менеджер</li>
+                    <li>Юрист по международному праву</li>
+                    <li>Бухгалтер по ЕС</li>
+                    <li>Маркетолог</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 13: ROI -->
+<div class="slide">
+    <div class="container">
+        <h2>📊 ROI и временные рамки</h2>
+        <h3>Финансовые показатели</h3>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">18,6%</div>
+                <div class="stat-label">ROI за 3 месяца</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">66 000€</div>
+                <div class="stat-label">Инвестиции (100 т)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12 300€</div>
+                <div class="stat-label">Прибыль (100 т)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2-3 мес</div>
+                <div class="stat-label">Время сделки</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>🎯 Сравнение с альтернативами</h4>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Банковский депозит: 2-4% годовых</li>
+                <li>Недвижимость: 5-8% годовых</li>
+                <li><strong>Наш проект: 18,6% годовых</strong></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 14: Следующие шаги -->
+<div class="slide">
+    <div class="container">
+        <h2>📅 Следующие шаги</h2>
+        <h3>Конкретный план действий</h3>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>📅 Неделя 1-2</h4>
+                <ul>
+                    <li>Подписание <span class="term-link" onclick="showTerm('LOI')">LOI</span> с польскими заводами</li>
+                    <li>Открытие Sp. z o.o. в Польше</li>
+                    <li>Подготовка контрактов</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>📅 Месяц 1-2</h4>
+                <ul>
+                    <li>Первая тестовая сделка (100 т)</li>
+                    <li>Отладка процессов</li>
+                    <li>Построение отношений</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>📅 Месяц 3</h4>
+                <ul>
+                    <li>Анализ результатов</li>
+                    <li>Принятие решения о масштабировании</li>
+                    <li>Планирование следующих сделок</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>🎯 Цель: Получить первую прибыль через 3 месяца</h4>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 15: Гарантии -->
+<div class="slide">
+    <div class="container">
+        <h2>🤝 Гарантии для инвестора</h2>
+        <h3>Ваша личная ответственность</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>🤝 Личные гарантии</h4>
+                <ul>
+                    <li>Личная ответственность на сумму сделки</li>
+                    <li>Залог личных активов (при наличии)</li>
+                    <li>Personal guarantee</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>📋 Контроль и прозрачность</h4>
+                <ul>
+                    <li>Еженедельные отчеты о прогрессе</li>
+                    <li>Доступ ко всем документам и переписке</li>
+                    <li>Контроль всех платежей</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>🛡️ Защита активов</h4>
+                <ul>
+                    <li>Поэтапное финансирование</li>
+                    <li>Право остановить проект в любой момент</li>
+                    <li>Резервный фонд 10-15% от сделки</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Слайд 16: Заключение -->
+<div class="slide">
+    <div class="container">
+        <h2>🎯 Заключение</h2>
+        <h3>Почему стоит инвестировать сейчас</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>⏰ Почему сейчас</h4>
+                <ul>
+                    <li>Растущий спрос на лён в ЕС (+15% в год)</li>
+                    <li>Благоприятная конъюнктура цен</li>
+                    <li>Ваши прямые связи с поставщиками</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>👥 Почему мы</h4>
+                <ul>
+                    <li>Прямой доступ к казахстанским фермерам</li>
+                    <li>Готовая компания в ЕС</li>
+                    <li>Знание местного рынка и логистики</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>💰 Почему выгодно</h4>
+                <ul>
+                    <li>Маржа 130 €/т</li>
+                    <li>ROI 18,6% за 3 месяца</li>
+                    <li>Потенциал масштабирования</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>🎯 Следующий шаг: LOI + запуск тестовой поставки</h4>
+            <h3>📞 Готовы начать?</h3>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>Экспорт льна из Казахстана в Европу | Инвестиционное предложение</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--memory);">© 2024. Все права защищены.</p>
+</div>
+
+<script>
+    // Простая защита паролем
+    const correctPassword = "flax2024"; // Измените на нужный пароль
+    
+    function checkPassword() {
+        const input = document.getElementById('passwordInput');
+        const error = document.getElementById('errorMessage');
+        const overlay = document.getElementById('passwordOverlay');
+        const content = document.getElementById('mainContent');
+        
+        if (input.value === correctPassword) {
+            overlay.style.display = 'none';
+            content.style.display = 'block';
+            // Сохраняем в localStorage, чтобы не вводить пароль каждый раз
+            localStorage.setItem('authenticated', 'true');
+        } else {
+            error.style.display = 'block';
+            input.value = '';
+        }
+    }
+    
+    // Проверяем, был ли пользователь уже авторизован
+    window.onload = function() {
+        if (localStorage.getItem('authenticated') === 'true') {
+            document.getElementById('passwordOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+    }
+    
+    // Обработка Enter в поле пароля
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    });
+    
+    // Функция для показа терминов (будет реализована в глоссарии)
+    function showTerm(term) {
+        // Пока просто переходим на страницу глоссария
+        window.location.href = 'glossary.html#' + term;
+    }
+</script>
+
+</body>
+</html>

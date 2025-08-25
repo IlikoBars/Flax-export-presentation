@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глоссарий терминов - Экспорт льна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soul: #F8F7F4;
+            --shadow: #1A1A1A;
+            --memory: #D4C4A8;
+            --whisper: #E8E0D0;
+            --gold: #B38B59;
+            --amber: #C4A484;
+            --earth: #9CAF88;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--soul);
+            color: var(--shadow);
+            line-height: 1.6;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--soul);
+            border-bottom: 1px solid var(--memory);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--amber);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--amber);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--memory);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .term-card {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .term-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--amber));
+        }
+
+        .term-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(180, 139, 89, 0.15);
+        }
+
+        .term-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .term-definition {
+            font-size: 1.1rem;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .term-example {
+            background: var(--whisper);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .term-category {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--soul);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .alphabet-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .alphabet-nav a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            text-decoration: none;
+            color: var(--amber);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .alphabet-nav a:hover,
+        .alphabet-nav a.active {
+            background: var(--gold);
+            color: var(--soul);
+        }
+
+        .footer {
+            background: var(--shadow);
+            color: var(--soul);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gold);
+            color: var(--soul);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top:hover {
+            background: var(--amber);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .alphabet-nav {
+                gap: 0.3rem;
+            }
+            
+            .alphabet-nav a {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Анимации */
+        .term-card {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="nav">
+    <h1>📚 Глоссарий терминов</h1>
+    <div class="nav-links">
+        <a href="index.html">← Назад к презентации</a>
+    </div>
+</nav>
+
+<!-- Контент -->
+<div class="content">
+    <h1>📚 Глоссарий терминов</h1>
+    <div class="subtitle">Объяснение всех терминов, используемых в инвестиционном предложении</div>
+
+    <!-- Поиск -->
+    <input type="text" class="search-box" id="searchBox" placeholder="🔍 Поиск терминов...">
+
+    <!-- Навигация по алфавиту -->
+    <div class="alphabet-nav" id="alphabetNav">
+        <a href="#А">А</a>
+        <a href="#В">В</a>
+        <a href="#Г">Г</a>
+        <a href="#Д">Д</a>
+        <a href="#Е">Е</a>
+        <a href="#З">З</a>
+        <a href="#И">И</a>
+        <a href="#К">К</a>
+        <a href="#Л">Л</a>
+        <a href="#М">М</a>
+        <a href="#Н">Н</a>
+        <a href="#О">О</a>
+        <a href="#П">П</a>
+        <a href="#Р">Р</a>
+        <a href="#С">С</a>
+        <a href="#Т">Т</a>
+        <a href="#У">У</a>
+        <a href="#Ф">Ф</a>
+        <a href="#Х">Х</a>
+        <a href="#Ц">Ц</a>
+        <a href="#Ч">Ч</a>
+        <a href="#Э">Э</a>
+        <a href="#Ю">Ю</a>
+        <a href="#Я">Я</a>
+    </div>
+
+    <!-- Термины -->
+    <div id="termsContainer">
+
+        <!-- А -->
+        <div class="term-card" data-term="аккредитив">
+            <div class="term-category">Финансы</div>
+            <div class="term-title">Аккредитив (Letter of Credit, L/C)</div>
+            <div class="term-definition">
+                Банковская гарантия платежа, при которой банк покупателя "замораживает" деньги и обязуется заплатить поставщику при выполнении определенных условий. Обеспечивает безопасность сделки, но требует сложного документооборота.
+            </div>
+            <div class="term-example">
+                💡 В нашем проекте мы НЕ используем аккредитив, так как у нас есть собственный капитал и комплексное страхование, что проще и дешевле.
+            </div>
+        </div>
+
+        <!-- В -->
+        <div class="term-card" data-term="волатильность">
+            <div class="term-category">Экономика</div>
+            <div class="term-title">Волатильность</div>
+            <div class="term-definition">
+                Степень изменчивости цены товара или валюты во времени. Низкая волатильность означает стабильные цены, высокая - резкие колебания.
+            </div>
+            <div class="term-example">
+                💡 Лён имеет низкую волатильность цен, что делает его привлекательным для торговли - меньше рисков резких изменений стоимости.
+            </div>
+        </div>
+
+        <!-- Г -->
+        <div class="term-card" data-term="гмбх">
+            <div class="term-category">Юридическое</div>
+            <div class="term-title">GmbH (Gesellschaft mit beschränkter Haftung)</div>
+            <div class="term-definition">
+                Немецкая форма юридического лица, аналогичная ООО. Обеспечивает ограниченную ответственность владельцев и высокую репутацию в бизнесе.
+            </div>
+            <div class="term-example">
+                💡 В Германии GmbH пользуется большим доверием, что позволяет заключать долгосрочные контракты, но требует уплаты налога ~30%.
+            </div>
+        </div>
+
+        <!-- Д -->
+        <div class="term-card" data-term="диверсификация">
+            <div class="term-category">Стратегия</div>
+            <div class="term-title">Диверсификация</div>
+            <div class="term-definition">
+                Расширение ассортимента товаров или услуг для снижения рисков и увеличения доходов. Вместо одного товара компания торгует несколькими.
+            </div>
+            <div class="term-example">
+                💡 В будущем планируем диверсифицироваться: кроме льна добавить другие натуральные волокна (конопля, джут) и экологичные материалы.
+            </div>
+        </div>
+
+        <!-- З -->
+        <div class="term-card" data-term="защита-активов">
+            <div class="term-category">Юридическое</div>
+            <div class="term-title">Защита активов</div>
+            <div class="term-definition">
+                Совокупность юридических и финансовых мер для защиты имущества и капитала инвестора от рисков, потерь и претензий третьих лиц.
+            </div>
+            <div class="term-example">
+                💡 В нашем проекте: поэтапное финансирование, право вето, контроль банковских счетов, личные гарантии оператора.
+            </div>
+        </div>
+
+        <!-- И -->
+        <div class="term-card" data-term="инкотермс">
+            <div class="term-category">Логистика</div>
+            <div class="term-title">Инкотермс (Incoterms)</div>
+            <div class="term-definition">
+                Международные правила торговли, определяющие обязанности продавца и покупателя по доставке товара, распределению расходов и рисков.
+            </div>
+            <div class="term-example">
+                💡 CIP (Carriage and Insurance Paid) - продавец оплачивает перевозку и страхование до указанного места. DAP (Delivered at Place) - продавец доставляет товар в указанное место.
+            </div>
+        </div>
+
+        <!-- К -->
+        <div class="term-card" data-term="комиссия">
+            <div class="term-category">Финансы</div>
+            <div class="term-title">Комиссия</div>
+            <div class="term-definition">
+                Вознаграждение посредника за организацию сделки, обычно выражается в процентах от суммы сделки или фиксированной сумме.
+            </div>
+            <div class="term-example">
+                💡 В агентской модели мы получаем комиссию 5-7% от суммы сделки (~4-5,5k € на 100 т), не вкладывая собственные средства.
+            </div>
+        </div>
+
+        <!-- Л -->
+        <div class="term-card" data-term="логистика">
+            <div class="term-category">Операции</div>
+            <div class="term-title">Логистика</div>
+            <div class="term-definition">
+                Управление потоками товаров, информации и финансов от поставщика до конечного потребителя. Включает транспортировку, складирование, таможенное оформление.
+            </div>
+            <div class="term-example">
+                💡 Наша логистика: Казахстан → железная дорога → Польша → склад → покупатель. Общая стоимость ~110 €/т.
+            </div>
+        </div>
+
+        <div class="term-card" data-term="LOI">
+            <div class="term-category">Юридическое</div>
+            <div class="term-title">LOI (Letter of Intent)</div>
+            <div class="term-definition">
+                Письмо о намерениях - предварительное соглашение между сторонами о будущем сотрудничестве. Не является обязательным контрактом, но показывает серьезность намерений.
+            </div>
+            <div class="term-example">
+                💡 Подписываем LOI с польскими заводами, чтобы подтвердить их готовность покупать лён по согласованным ценам и объемам.
+            </div>
+        </div>
+
+        <!-- М -->
+        <div class="term-card" data-term="маржа">
+            <div class="term-category">Финансы</div>
+            <div class="term-title">Маржа</div>
+            <div class="term-definition">
+                Разница между ценой продажи и ценой закупки товара. Показывает прибыльность сделки до вычета всех расходов.
+            </div>
+            <div class="term-example">
+                💡 Наша маржа: 790 € (продажа) - 550 € (закупка) = 130 €/т. Это валовая прибыль до вычета логистики, налогов и страховки.
+            </div>
+        </div>
+
+        <!-- Н -->
+        <div class="term-card" data-term="НДС">
+            <div class="term-category">Налоги</div>
+            <div class="term-title">НДС (Налог на добавленную стоимость)</div>
+            <div class="term-definition">
+                Косвенный налог, взимаемый с добавленной стоимости товаров и услуг. В ЕС обычно составляет 19-27%, но для экспорта может быть 0%.
+            </div>
+            <div class="term-example">
+                💡 При экспорте льна из Казахстана в ЕС НДС составляет 0%. В Польше можем получить возврат VAT (налоговый кредит).
+            </div>
+        </div>
+
+        <div class="term-card" data-term="NDA">
+            <div class="term-category">Юридическое</div>
+            <div class="term-title">NDA (Non-Disclosure Agreement)</div>
+            <div class="term-definition">
+                Соглашение о неразглашении конфиденциальной информации. Запрещает сторонам раскрывать коммерческие секреты, цены, контакты поставщиков.
+            </div>
+            <div class="term-example">
+                💡 Подписываем NDA с поставщиками и покупателями, чтобы защитить наши коммерческие связи и условия сделок.
+            </div>
+        </div>
+
+        <!-- О -->
+        <div class="term-card" data-term="оператор">
+            <div class="term-category">Роли</div>
+            <div class="term-title">Оператор</div>
+            <div class="term-definition">
+                Лицо или компания, которая организует и координирует торговую операцию, но не является владельцем товара или капитала.
+            </div>
+            <div class="term-example">
+                💡 Вы выступаете как оператор: организуете сделки, ведете переговоры, координируете логистику, но капитал предоставляет инвестор (дядя).
+            </div>
+        </div>
+
+        <!-- П -->
+        <div class="term-card" data-term="performance-bond">
+            <div class="term-category">Страхование</div>
+            <div class="term-title">Performance Bond</div>
+            <div class="term-definition">
+                Банковская гарантия выполнения обязательств. Банк обязуется выплатить определенную сумму, если поставщик не выполнит условия контракта.
+            </div>
+            <div class="term-example">
+                💡 Требуем от поставщиков Performance Bond на 10% от суммы сделки, чтобы гарантировать своевременную поставку качественного льна.
+            </div>
+        </div>
+
+        <!-- Р -->
+        <div class="term-card" data-term="ROI">
+            <div class="term-category">Финансы</div>
+            <div class="term-title">ROI (Return on Investment)</div>
+            <div class="term-definition">
+                Показатель доходности инвестиций, выраженный в процентах. Показывает, сколько прибыли приносят вложенные деньги за определенный период.
+            </div>
+            <div class="term-example">
+                💡 Наш ROI: 12 300 € (прибыль) / 66 000 € (инвестиции) × 100% = 18,6% за 3 месяца. Это очень высокая доходность!
+            </div>
+        </div>
+
+        <!-- С -->
+        <div class="term-card" data-term="sp-z-oo">
+            <div class="term-category">Юридическое</div>
+            <div class="term-title">Sp. z o.o. (Spółka z ograniczoną odpowiedzialnością)</div>
+            <div class="term-definition">
+                Польская форма юридического лица, аналогичная ООО. Обеспечивает ограниченную ответственность и льготное налогообложение (9% CIT).
+            </div>
+            <div class="term-example">
+                💡 Рекомендуем начать с польской Sp. z o.o. из-за низких налогов (9% вместо 30% в Германии) и быстрой регистрации.
+            </div>
+        </div>
+
+        <!-- Т -->
+        <div class="term-card" data-term="таможня">
+            <div class="term-category">Логистика</div>
+            <div class="term-title">Таможня</div>
+            <div class="term-definition">
+                Государственный орган, контролирующий перемещение товаров через границу, взимающий пошлины и налоги, проверяющий документы.
+            </div>
+            <div class="term-example">
+                💡 Лён (код ТН ВЭД 5301) имеет 0% пошлину при ввозе в ЕС. Нужны сертификаты качества и фитосанитарные документы.
+            </div>
+        </div>
+
+        <!-- Х -->
+        <div class="term-card" data-term="хеджирование">
+            <div class="term-category">Финансы</div>
+            <div class="term-title">Хеджирование</div>
+            <div class="term-definition">
+                Стратегия снижения финансовых рисков путем заключения компенсирующих сделок. Защищает от колебаний валютных курсов, цен на товары.
+            </div>
+            <div class="term-example">
+                💡 Хеджируем валютные риски: заключаем форвардные контракты на покупку евро, чтобы зафиксировать курс обмена тенге/евро.
+            </div>
+        </div>
+
+        <!-- Э -->
+        <div class="term-card" data-term="escrow">
+            <div class="term-category">Финансы</div>
+            <div class="term-title">Escrow Account</div>
+            <div class="term-definition">
+                Нейтральный банковский счет, на который помещаются деньги до выполнения определенных условий. Обеспечивает безопасность сделки для обеих сторон.
+            </div>
+            <div class="term-example">
+                💡 Для крупных сделок используем Escrow: деньги покупателя переводятся на нейтральный счет и разблокируются только после доставки товара.
+            </div>
+        </div>
+
+        <!-- Страховые термины -->
+        <div class="term-card" data-term="cargo-insurance">
+            <div class="term-category">Страхование</div>
+            <div class="term-title">Cargo Insurance</div>
+            <div class="term-definition">
+                Страхование груза от повреждений, кражи, пожара, стихийных бедствий во время транспортировки. Покрывает полную стоимость товара.
+            </div>
+            <div class="term-example">
+                💡 Стоимость: ~300 € на 100 т. Покрывает риски от момента погрузки в Казахстане до выгрузки в Польше.
+            </div>
+        </div>
+
+        <div class="term-card" data-term="cmr-insurance">
+            <div class="term-category">Страхование</div>
+            <div class="term-title">CMR Insurance</div>
+            <div class="term-definition">
+                Страхование ответственности перевозчика согласно Конвенции о договоре международной дорожной перевозки грузов (CMR).
+            </div>
+            <div class="term-example">
+                💡 Стоимость: ~200 € на 100 т. Покрывает ответственность перевозчика за сохранность груза во время транспортировки.
+            </div>
+        </div>
+
+        <div class="term-card" data-term="trade-credit-insurance">
+            <div class="term-category">Страхование</div>
+            <div class="term-title">Trade Credit Insurance</div>
+            <div class="term-definition">
+                Страхование от неплатежа покупателя. Покрывает риски банкротства, задержки платежей, отказа от оплаты товара.
+            </div>
+            <div class="term-example">
+                💡 Стоимость: ~200 € на 100 т. Если польский завод не заплатит, страховая компания возместит нам убытки.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Кнопка "Наверх" -->
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
+<!-- Footer -->
+<div class="footer">
+    <p>Глоссарий терминов | Экспорт льна из Казахстана в Европу</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--memory);">© 2024. Все права защищены.</p>
+</div>
+
+<script>
+    // Поиск по терминам
+    const searchBox = document.getElementById('searchBox');
+    const termsContainer = document.getElementById('termsContainer');
+    const termCards = document.querySelectorAll('.term-card');
+
+    searchBox.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        termCards.forEach(card => {
+            const title = card.querySelector('.term-title').textContent.toLowerCase();
+            const definition = card.querySelector('.term-definition').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || definition.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Навигация по алфавиту
+    const alphabetLinks = document.querySelectorAll('.alphabet-nav a');
+    
+    alphabetLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Убираем активный класс у всех ссылок
+            alphabetLinks.forEach(l => l.classList.remove('active'));
+            
+            // Добавляем активный класс к текущей ссылке
+            this.classList.add('active');
+            
+            const letter = this.textContent;
+            const targetCard = document.querySelector(`[data-term^="${letter.toLowerCase()}"]`);
+            
+            if (targetCard) {
+                targetCard.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Кнопка "Наверх"
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    backToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Проверяем хэш в URL для перехода к конкретному термину
+    window.addEventListener('load', function() {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            const targetCard = document.querySelector(`[data-term="${hash}"]`);
+            if (targetCard) {
+                setTimeout(() => {
+                    targetCard.scrollIntoView({ behavior: 'smooth' });
+                    targetCard.style.animation = 'none';
+                    targetCard.offsetHeight; // Trigger reflow
+                    targetCard.style.animation = 'slideUp 0.6s ease-out';
+                }, 500);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
