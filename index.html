@@ -633,16 +633,16 @@
         @media (max-width: 768px) {
             /* Навигация */
             .nav {
-                padding: 0.8rem 1rem;
+                padding: 0.4rem 0.8rem;
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.3rem;
                 height: auto;
-                min-height: 60px;
+                min-height: 45px;
                 position: relative;
             }
             
             .nav h1 {
-                font-size: 1.2rem;
+                font-size: 1rem;
                 margin: 0;
             }
             
@@ -694,7 +694,7 @@
             /* Слайды - УМЕНЬШАЕМ ВЫСОТУ */
             .slide {
                 min-height: auto;
-                padding: 1.5rem 1rem;
+                padding: 0.8rem 0.8rem;
                 text-align: left;
                 align-items: flex-start;
                 justify-content: flex-start;
@@ -929,10 +929,13 @@
             .step-content {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                overflow-x: hidden;
             }
 
             .step-card {
                 padding: 1.5rem;
+                overflow-x: hidden;
+                word-wrap: break-word;
             }
 
             .company-options {
@@ -1186,7 +1189,7 @@
         /* Стили для пошаговой инструкции */
         .step-content {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
@@ -1631,10 +1634,11 @@
             font-size: 1.1rem;
         }
 
-        .step-details {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
+                    .step-details {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                overflow-x: hidden;
+            }
     </style>
 </head>
 <body>
@@ -1656,12 +1660,12 @@
     <button class="mobile-menu-toggle" id="mobileMenuToggle">
         <div class="hamburger"></div>
     </button>
-    <div class="nav-links" id="navLinks">
-        <a href="#presentation">Презентация</a>
-        <a href="process.html">Процесс</a>
-        <a href="calculator.html">Калькулятор</a>
-        <a href="glossary.html">Глоссарий</a>
-    </div>
+            <div class="nav-links" id="navLinks">
+            <a href="#presentation">На главную</a>
+            <a href="process.html">Процесс</a>
+            <a href="calculator.html">Калькулятор</a>
+            <a href="glossary.html">Глоссарий</a>
+        </div>
 </nav>
 
 <!-- Контент -->
@@ -1708,9 +1712,9 @@
                 <h4>🤝 Что подписываем:</h4>
                 <ul>
                     <li>Договор поставки льна (100 т)</li>
-                    <li>NDA (соглашение о неразглашении)</li>
-                    <li>Non-circumvention (запрет обхода)</li>
-                    <li>Performance Bond (банковская гарантия)</li>
+                    <li><span class="term-link" onclick="showTerm('nda')">NDA</span> (соглашение о неразглашении)</li>
+                    <li><span class="term-link" onclick="showTerm('non-circumvention')">Non-circumvention</span> (запрет обхода)</li>
+                    <li><span class="term-link" onclick="showTerm('performance-bond')">Performance Bond</span> (банковская гарантия)</li>
                 </ul>
             </div>
             
@@ -1718,7 +1722,7 @@
                 <h4>💰 Условия:</h4>
                 <ul>
                     <li>Цена: 550€/т</li>
-                    <li>Качество: по сертификату SGS</li>
+                    <li>Качество: по сертификату <span class="term-link" onclick="showTerm('sgs')">SGS</span></li>
                     <li>Срок поставки: 2-3 недели</li>
                     <li>Оплата: аванс 30% + 70% при отгрузке</li>
                 </ul>
@@ -1814,11 +1818,11 @@
                             <h5>📄 Документы:</h5>
                             <ul>
                                 <li>Договор поставки (казахи → Sp. z o.o.)</li>
-                                <li>Инвойс (от казахов)</li>
-                                <li>Packing List (от казахов)</li>
-                                <li>Сертификат происхождения (от казахов)</li>
-                                <li>Фитосанитарный сертификат (от казахов)</li>
-                                <li>NDA + Non-circumvention</li>
+                                <li><span class="term-link" onclick="showTerm('invoice')">Инвойс</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('packing-list')">Packing List</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('coo')">Сертификат происхождения</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('phytosanitary')">Фитосанитарный сертификат</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('nda')">NDA</span> + <span class="term-link" onclick="showTerm('non-circumvention')">Non-circumvention</span></li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -1845,10 +1849,10 @@
                         <div class="step-documents">
                             <h5>📄 Документы:</h5>
                             <ul>
-                                <li>Экспортная декларация (Казахстан)</li>
-                                <li>CMR накладная (железная дорога)</li>
-                                <li>Импортная декларация (Польша)</li>
-                                <li>VAT декларация (ст. 33a)</li>
+                                <li><span class="term-link" onclick="showTerm('export-declaration')">Экспортная декларация</span> (Казахстан)</li>
+                                <li><span class="term-link" onclick="showTerm('cmr')">CMR накладная</span> (железная дорога)</li>
+                                <li><span class="term-link" onclick="showTerm('import-declaration')">Импортная декларация</span> (Польша)</li>
+                                <li><span class="term-link" onclick="showTerm('vat')">VAT декларация</span> (ст. 33a)</li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -1876,10 +1880,10 @@
                         <div class="step-documents">
                             <h5>📄 Документы:</h5>
                             <ul>
-                                <li>Инвойс (Sp. z o.o. → покупатель)</li>
-                                <li>VAT счет-фактура (23%)</li>
+                                <li><span class="term-link" onclick="showTerm('invoice')">Инвойс</span> (Sp. z o.o. → покупатель)</li>
+                                <li><span class="term-link" onclick="showTerm('vat')">VAT счет-фактура</span> (23%)</li>
                                 <li>Договор купли-продажи</li>
-                                <li>Складская расписка</li>
+                                <li><span class="term-link" onclick="showTerm('warehouse-receipt')">Складская расписка</span></li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -1968,11 +1972,11 @@
                             <h5>📄 Документы:</h5>
                             <ul>
                                 <li>Договор поставки (казахи → GmbH)</li>
-                                <li>Инвойс (от казахов)</li>
-                                <li>Packing List (от казахов)</li>
-                                <li>Сертификат происхождения (от казахов)</li>
-                                <li>Фитосанитарный сертификат (от казахов)</li>
-                                <li>NDA + Non-circumvention</li>
+                                <li><span class="term-link" onclick="showTerm('invoice')">Инвойс</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('packing-list')">Packing List</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('coo')">Сертификат происхождения</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('phytosanitary')">Фитосанитарный сертификат</span> (от казахов)</li>
+                                <li><span class="term-link" onclick="showTerm('nda')">NDA</span> + <span class="term-link" onclick="showTerm('non-circumvention')">Non-circumvention</span></li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -1999,10 +2003,10 @@
                         <div class="step-documents">
                             <h5>📄 Документы:</h5>
                             <ul>
-                                <li>Экспортная декларация (Казахстан)</li>
-                                <li>CMR накладная (железная дорога)</li>
-                                <li>Импортная декларация (Германия)</li>
-                                <li>VAT декларация (reverse charge)</li>
+                                <li><span class="term-link" onclick="showTerm('export-declaration')">Экспортная декларация</span> (Казахстан)</li>
+                                <li><span class="term-link" onclick="showTerm('cmr')">CMR накладная</span> (железная дорога)</li>
+                                <li><span class="term-link" onclick="showTerm('import-declaration')">Импортная декларация</span> (Германия)</li>
+                                <li><span class="term-link" onclick="showTerm('vat')">VAT декларация</span> (reverse charge)</li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -2030,10 +2034,10 @@
                         <div class="step-documents">
                             <h5>📄 Документы:</h5>
                             <ul>
-                                <li>Инвойс (GmbH → покупатель)</li>
-                                <li>VAT счет-фактура (19%)</li>
+                                <li><span class="term-link" onclick="showTerm('invoice')">Инвойс</span> (GmbH → покупатель)</li>
+                                <li><span class="term-link" onclick="showTerm('vat')">VAT счет-фактура</span> (19%)</li>
                                 <li>Договор купли-продажи</li>
-                                <li>Складская расписка</li>
+                                <li><span class="term-link" onclick="showTerm('warehouse-receipt')">Складская расписка</span></li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -2091,9 +2095,9 @@
                         <div class="step-documents">
                             <h5>📄 Документы:</h5>
                             <ul>
-                                <li>NDA с казахами</li>
-                                <li>NDA с поляками</li>
-                                <li>Non-circumvention соглашение</li>
+                                <li><span class="term-link" onclick="showTerm('nda')">NDA</span> с казахами</li>
+                                <li><span class="term-link" onclick="showTerm('nda')">NDA</span> с поляками</li>
+                                <li><span class="term-link" onclick="showTerm('non-circumvention')">Non-circumvention</span> соглашение</li>
                                 <li>Агентский договор (5-7% комиссия)</li>
                             </ul>
                         </div>
@@ -2122,10 +2126,10 @@
                             <h5>📄 Документы:</h5>
                             <ul>
                                 <li>Договор поставки (казахи ↔ поляки)</li>
-                                <li>Инвойс (казахи → поляки)</li>
-                                <li>Packing List (казахи)</li>
-                                <li>Сертификат происхождения (казахи)</li>
-                                <li>Фитосанитарный сертификат (казахи)</li>
+                                <li><span class="term-link" onclick="showTerm('invoice')">Инвойс</span> (казахи → поляки)</li>
+                                <li><span class="term-link" onclick="showTerm('packing-list')">Packing List</span> (казахи)</li>
+                                <li><span class="term-link" onclick="showTerm('coo')">Сертификат происхождения</span> (казахи)</li>
+                                <li><span class="term-link" onclick="showTerm('phytosanitary')">Фитосанитарный сертификат</span> (казахи)</li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -2152,10 +2156,10 @@
                         <div class="step-documents">
                             <h5>📄 Документы:</h5>
                             <ul>
-                                <li>Экспортная декларация (казахи)</li>
-                                <li>CMR накладная (железная дорога)</li>
-                                <li>Импортная декларация (поляки)</li>
-                                <li>VAT декларация (поляки)</li>
+                                <li><span class="term-link" onclick="showTerm('export-declaration')">Экспортная декларация</span> (казахи)</li>
+                                <li><span class="term-link" onclick="showTerm('cmr')">CMR накладная</span> (железная дорога)</li>
+                                <li><span class="term-link" onclick="showTerm('import-declaration')">Импортная декларация</span> (поляки)</li>
+                                <li><span class="term-link" onclick="showTerm('vat')">VAT декларация</span> (поляки)</li>
                             </ul>
                         </div>
                         <div class="step-responsibility">
@@ -2426,7 +2430,7 @@
                 <h4>🏢 Юридическая защита</h4>
                 <ul>
                     <li>Европейская компания (Sp. z o.o.)</li>
-                    <li>NDA + non-circumvention</li>
+                    <li><span class="term-link" onclick="showTerm('nda')">NDA</span> + <span class="term-link" onclick="showTerm('non-circumvention')">non-circumvention</span></li>
                     <li>Эксклюзивные контракты</li>
                     <li>Личные гарантии</li>
                 </ul>
@@ -2435,17 +2439,17 @@
             <div class="protection-card">
                 <h4>📋 Страхование</h4>
                 <ul>
-                    <li>Cargo Insurance (груз)</li>
-                    <li>CMR Insurance (перевозчик)</li>
-                    <li>Trade Credit Insurance (платежи)</li>
-                    <li>Political Risk Insurance</li>
+                    <li><span class="term-link" onclick="showTerm('cargo-insurance')">Cargo Insurance</span> (груз)</li>
+                    <li><span class="term-link" onclick="showTerm('cmr-insurance')">CMR Insurance</span> (перевозчик)</li>
+                    <li><span class="term-link" onclick="showTerm('trade-credit-insurance')">Trade Credit Insurance</span> (платежи)</li>
+                    <li><span class="term-link" onclick="showTerm('political-risk-insurance')">Political Risk Insurance</span></li>
                 </ul>
             </div>
             
             <div class="protection-card">
                 <h4>💰 Финансовый контроль</h4>
                 <ul>
-                    <li>Escrow Account</li>
+                    <li><span class="term-link" onclick="showTerm('escrow-account')">Escrow Account</span></li>
                     <li>Поэтапные платежи</li>
                     <li>Ежемесячная отчетность</li>
                     <li>Прозрачность всех операций</li>
