@@ -12,7 +12,7 @@ window.FLAX_DEFAULTS = {
 };
 
 // Пароль для доступа (UX gating only)
-window.__PW = "flax2024";
+window.__PW = "flax2025";
 
 // Функция для расчета ROI
 window.calculateROI = function(purchase, logistics, other, selling, batch, insurance, tax) {
