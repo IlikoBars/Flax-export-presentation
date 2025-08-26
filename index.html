@@ -1398,6 +1398,243 @@
             border-bottom: 2px solid var(--gold);
             font-size: 1.1rem;
         }
+
+        /* Стили для вариантов с переключением */
+        .variant-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .variant-tab {
+            padding: 1rem 2rem;
+            border: 2px solid var(--memory);
+            background: var(--soul);
+            color: var(--shadow);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .variant-tab:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .variant-tab.active {
+            background: var(--gold);
+            color: var(--soul);
+            border-color: var(--gold);
+        }
+
+        .variant-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .variant-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .variant-overview {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .overview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--memory);
+        }
+
+        .overview-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--shadow);
+        }
+
+        .overview-profit {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .overview-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            background: var(--whisper);
+            border-radius: 8px;
+        }
+
+        .overview-stat span:first-child {
+            color: var(--amber);
+            font-weight: 500;
+        }
+
+        .overview-stat span:last-child {
+            color: var(--shadow);
+            font-weight: 600;
+        }
+
+        .process-roadmap {
+            margin: 2rem 0;
+        }
+
+        .roadmap-step {
+            background: var(--soul);
+            border: 1px solid var(--memory);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-header .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--soul);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        .step-header h4 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--shadow);
+        }
+
+        .step-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step-documents h5,
+        .step-responsibility h5,
+        .step-costs h5 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .step-documents ul,
+        .step-costs ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .step-documents li,
+        .step-costs li {
+            margin-bottom: 0.5rem;
+            color: var(--shadow);
+            font-size: 0.9rem;
+        }
+
+        .step-responsibility p {
+            margin: 0;
+            color: var(--shadow);
+            line-height: 1.6;
+        }
+
+        .variant-actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Мобильные стили для новых блоков */
+        .variant-tabs {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .variant-tab {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .variant-overview {
+            padding: 1.5rem;
+        }
+
+        .overview-header {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .overview-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .overview-profit {
+            font-size: 1.5rem;
+        }
+
+        .overview-stats {
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .roadmap-step {
+            padding: 1.5rem;
+        }
+
+        .step-header .step-number {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            margin-right: 0.8rem;
+        }
+
+        .step-header h4 {
+            font-size: 1.1rem;
+        }
+
+        .step-details {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -1494,89 +1731,482 @@
     </div>
 </div>
 
-<!-- Блок 3: Шаг 2 - Выбор компании -->
+<!-- Блок 3: Варианты реализации -->
 <div class="slide">
     <div class="container">
-        <h2>🏢 Шаг 2: Выбор европейской компании</h2>
-        <h3>Решаем через какую фирму будем работать</h3>
+        <h2>🎯 Варианты реализации</h2>
+        <h3>Выберите подходящую модель и изучите детальный процесс</h3>
         
-        <div class="company-options">
-            <div class="company-card">
-                <div class="company-header">
-                    <h4>🇵🇱 Польша (Sp. z o.o.)</h4>
-                    <div class="company-profit">11 800€</div>
+        <!-- Переключатели вариантов -->
+        <div class="variant-tabs">
+            <button class="variant-tab active" data-variant="poland">
+                🇵🇱 Польша (Sp. z o.o.)
+            </button>
+            <button class="variant-tab" data-variant="germany">
+                🇩🇪 Германия (GmbH)
+            </button>
+            <button class="variant-tab" data-variant="agency">
+                🤝 Агентская модель
+            </button>
+        </div>
+        
+        <!-- Польша - Детальный процесс -->
+        <div class="variant-content active" id="poland-content">
+            <div class="variant-overview">
+                <div class="overview-header">
+                    <h3>🇵🇱 Польская компания (Sp. z o.o.)</h3>
+                    <div class="overview-profit">Прибыль: 11 800€</div>
                 </div>
-                <div class="company-details">
-                    <h5>Налоги:</h5>
-                    <ul>
-                        <li><strong>9% CIT</strong> - малый бизнес (до 2 млн €)</li>
-                        <li><strong>19% CIT</strong> - обычная ставка</li>
-                    </ul>
-                    <h5>Плюсы:</h5>
-                    <ul>
-                        <li>Быстрая регистрация (1-2 недели)</li>
-                        <li>Низкие налоги для малого бизнеса</li>
-                        <li>Простая отчетность</li>
-                        <li>Оптимальный риск/доход</li>
-                    </ul>
-                </div>
-                <div class="company-actions">
-                    <button class="btn-primary" onclick="window.open('poland-plan.html', '_blank')">Подробный план</button>
-                </div>
-            </div>
-            
-            <div class="company-card">
-                <div class="company-header">
-                    <h4>🇩🇪 Германия (GmbH)</h4>
-                    <div class="company-profit">9 100€</div>
-                </div>
-                <div class="company-details">
-                    <h5>Налоги:</h5>
-                    <ul>
-                        <li><strong>30% CIT</strong> - корпоративный налог</li>
-                        <li>+ муниципальные налоги</li>
-                    </ul>
-                    <h5>Плюсы:</h5>
-                    <ul>
-                        <li>Высокая репутация</li>
-                        <li>Долгосрочные контракты</li>
-                        <li>Больше доверия партнеров</li>
-                        <li>Стабильность</li>
-                    </ul>
-                </div>
-                <div class="company-actions">
-                    <button class="btn-secondary" onclick="window.open('germany-plan.html', '_blank')">Подробный план</button>
+                <div class="overview-stats">
+                    <div class="overview-stat">
+                        <span>Налог CIT:</span>
+                        <span>9% (малый бизнес)</span>
+                    </div>
+                    <div class="overview-stat">
+                        <span>Налог VAT:</span>
+                        <span>23% (возврат)</span>
+                    </div>
+                    <div class="overview-stat">
+                        <span>Регистрация:</span>
+                        <span>1-2 недели</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="company-card">
-                <div class="company-header">
-                    <h4>🤝 Агентская модель</h4>
-                    <div class="company-profit">4-5,5k€</div>
+            <div class="process-roadmap">
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h4>Регистрация компании</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Учредительные документы Sp. z o.o.</li>
+                                <li>EORI номер (таможня)</li>
+                                <li>Банковский счет в EUR</li>
+                                <li>VAT регистрация</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Польская компания - официальный покупатель и продавец</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Регистрация: ~500€</li>
+                                <li>Банковский счет: ~200€</li>
+                                <li>Бухгалтерия: ~300€/мес</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="company-details">
-                    <h5>Налоги:</h5>
-                    <ul>
-                        <li><strong>Нет</strong> - работаем как посредник</li>
-                        <li>Налоги платит покупатель</li>
-                    </ul>
-                    <h5>Плюсы:</h5>
-                    <ul>
-                        <li>Минимальные риски</li>
-                        <li>Без собственных инвестиций</li>
-                        <li>Комиссия 5-7%</li>
-                        <li>Быстрый старт</li>
-                    </ul>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h4>Контракты и документы</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Договор поставки (казахи → Sp. z o.o.)</li>
+                                <li>Инвойс (от казахов)</li>
+                                <li>Packing List (от казахов)</li>
+                                <li>Сертификат происхождения (от казахов)</li>
+                                <li>Фитосанитарный сертификат (от казахов)</li>
+                                <li>NDA + Non-circumvention</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Казахи выписывают документы, Sp. z o.o. подписывает контракт</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Контракт: ~200€</li>
+                                <li>Сертификаты: ~300€</li>
+                                <li>Юридические услуги: ~500€</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="company-actions">
-                    <button class="btn-secondary" onclick="window.open('agency-plan.html', '_blank')">Подробный план</button>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h4>Оплата и логистика</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Экспортная декларация (Казахстан)</li>
+                                <li>CMR накладная (железная дорога)</li>
+                                <li>Импортная декларация (Польша)</li>
+                                <li>VAT декларация (ст. 33a)</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Sp. z o.o. оплачивает казахам, организует логистику, оформляет таможню</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Закупка: 55 000€</li>
+                                <li>Логистика: 8 000€</li>
+                                <li>Таможня: 3 000€</li>
+                                <li>Страховка: 700€</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h4>Продажа и налоги</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Инвойс (Sp. z o.o. → покупатель)</li>
+                                <li>VAT счет-фактура (23%)</li>
+                                <li>Договор купли-продажи</li>
+                                <li>Складская расписка</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Sp. z o.o. продает польским заводам, начисляет VAT, платит налоги</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Результат:</h5>
+                            <ul>
+                                <li>Выручка: 79 000€</li>
+                                <li>VAT к уплате: 18 170€ (возврат)</li>
+                                <li>CIT (9%): 1 170€</li>
+                                <li>Чистая прибыль: 11 830€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="variant-actions">
+                <button class="btn-primary" onclick="window.open('poland-plan.html', '_blank')">Подробный план</button>
             </div>
         </div>
         
-        <div class="highlight-box">
-            <h4>💡 Рекомендация: Начать с Польши (9% CIT)</h4>
-            <p>Оптимальное соотношение риск/доход для тестовой сделки</p>
+        <!-- Германия - Детальный процесс -->
+        <div class="variant-content" id="germany-content">
+            <div class="variant-overview">
+                <div class="overview-header">
+                    <h3>🇩🇪 Немецкая компания (GmbH)</h3>
+                    <div class="overview-profit">Прибыль: 9 100€</div>
+                </div>
+                <div class="overview-stats">
+                    <div class="overview-stat">
+                        <span>Налог CIT:</span>
+                        <span>30% (корпоративный)</span>
+                    </div>
+                    <div class="overview-stat">
+                        <span>Налог VAT:</span>
+                        <span>19% (возврат)</span>
+                    </div>
+                    <div class="overview-stat">
+                        <span>Регистрация:</span>
+                        <span>3-4 недели</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-roadmap">
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h4>Регистрация компании</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Учредительные документы GmbH</li>
+                                <li>EORI номер (таможня)</li>
+                                <li>Банковский счет в EUR</li>
+                                <li>VAT регистрация (19%)</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>GmbH - официальный покупатель и продавец, полный немецкий комплаенс</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Регистрация: ~1 500€</li>
+                                <li>Банковский счет: ~300€</li>
+                                <li>Бухгалтерия: ~500€/мес</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h4>Контракты и документы</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Договор поставки (казахи → GmbH)</li>
+                                <li>Инвойс (от казахов)</li>
+                                <li>Packing List (от казахов)</li>
+                                <li>Сертификат происхождения (от казахов)</li>
+                                <li>Фитосанитарный сертификат (от казахов)</li>
+                                <li>NDA + Non-circumvention</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Казахи выписывают документы, GmbH подписывает контракт</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Контракт: ~300€</li>
+                                <li>Сертификаты: ~300€</li>
+                                <li>Юридические услуги: ~800€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h4>Оплата и логистика</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Экспортная декларация (Казахстан)</li>
+                                <li>CMR накладная (железная дорога)</li>
+                                <li>Импортная декларация (Германия)</li>
+                                <li>VAT декларация (reverse charge)</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>GmbH оплачивает казахам, организует логистику, оформляет немецкую таможню</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Закупка: 55 000€</li>
+                                <li>Логистика: 8 000€</li>
+                                <li>Таможня: 3 000€</li>
+                                <li>Страховка: 700€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h4>Продажа и налоги</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Инвойс (GmbH → покупатель)</li>
+                                <li>VAT счет-фактура (19%)</li>
+                                <li>Договор купли-продажи</li>
+                                <li>Складская расписка</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>GmbH продает польским заводам, начисляет VAT, платит немецкие налоги</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Результат:</h5>
+                            <ul>
+                                <li>Выручка: 79 000€</li>
+                                <li>VAT к уплате: 15 010€ (возврат)</li>
+                                <li>CIT (30%): 3 900€</li>
+                                <li>Чистая прибыль: 9 100€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="variant-actions">
+                <button class="btn-secondary" onclick="window.open('germany-plan.html', '_blank')">Подробный план</button>
+            </div>
+        </div>
+        
+        <!-- Агентская модель - Детальный процесс -->
+        <div class="variant-content" id="agency-content">
+            <div class="variant-overview">
+                <div class="overview-header">
+                    <h3>🤝 Агентская модель</h3>
+                    <div class="overview-profit">Прибыль: 4-5,5k€</div>
+                </div>
+                <div class="overview-stats">
+                    <div class="overview-stat">
+                        <span>Налог CIT:</span>
+                        <span>Нет (посредник)</span>
+                    </div>
+                    <div class="overview-stat">
+                        <span>Налог VAT:</span>
+                        <span>Нет (не участвуем)</span>
+                    </div>
+                    <div class="overview-stat">
+                        <span>Регистрация:</span>
+                        <span>Не требуется</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-roadmap">
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h4>Агентские соглашения</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>NDA с казахами</li>
+                                <li>NDA с поляками</li>
+                                <li>Non-circumvention соглашение</li>
+                                <li>Агентский договор (5-7% комиссия)</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Вы - посредник, не участвуете в формальном обороте товара</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Юридические услуги: ~500€</li>
+                                <li>Переговоры: время</li>
+                                <li>Инвестиции: 0€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h4>Прямая сделка</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Договор поставки (казахи ↔ поляки)</li>
+                                <li>Инвойс (казахи → поляки)</li>
+                                <li>Packing List (казахи)</li>
+                                <li>Сертификат происхождения (казахи)</li>
+                                <li>Фитосанитарный сертификат (казахи)</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Казахи и поляки заключают прямую сделку, вы получаете комиссию</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Контроль процесса: время</li>
+                                <li>Координация: время</li>
+                                <li>Финансовые затраты: 0€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h4>Логистика и документы</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Экспортная декларация (казахи)</li>
+                                <li>CMR накладная (железная дорога)</li>
+                                <li>Импортная декларация (поляки)</li>
+                                <li>VAT декларация (поляки)</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Стороны сами организуют логистику, вы можете контролировать процесс</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Затраты:</h5>
+                            <ul>
+                                <li>Контроль: время</li>
+                                <li>Координация: время</li>
+                                <li>Финансовые затраты: 0€</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h4>Получение комиссии</h4>
+                    </div>
+                    <div class="step-details">
+                        <div class="step-documents">
+                            <h5>📄 Документы:</h5>
+                            <ul>
+                                <li>Агентский отчет</li>
+                                <li>Счет на комиссию</li>
+                                <li>Акт выполненных работ</li>
+                            </ul>
+                        </div>
+                        <div class="step-responsibility">
+                            <h5>👤 Ответственность:</h5>
+                            <p>Вы получаете комиссию за успешную сделку, налоги платят стороны</p>
+                        </div>
+                        <div class="step-costs">
+                            <h5>💰 Результат:</h5>
+                            <ul>
+                                <li>Комиссия 5%: 3 950€</li>
+                                <li>Комиссия 7%: 5 530€</li>
+                                <li>Налоги: 0€</li>
+                                <li>Риски: минимальные</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="variant-actions">
+                <button class="btn-secondary" onclick="window.open('agency-plan.html', '_blank')">Подробный план</button>
+            </div>
         </div>
     </div>
 </div>
@@ -1978,55 +2608,73 @@
         });
     }
     
-    // Мобильное меню
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        if (mobileMenuToggle && navLinks) {
-            mobileMenuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                mobileMenuToggle.classList.toggle('active');
-            });
+            // Мобильное меню
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
             
-            // Закрываем меню при клике на ссылку
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+                
+                // Закрываем меню при клике на ссылку
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+                
+                // Закрываем меню при клике вне его
+                document.addEventListener('click', function(e) {
+                    if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Переключение вариантов
+            const variantTabs = document.querySelectorAll('.variant-tab');
+            const variantContents = document.querySelectorAll('.variant-content');
+            
+            variantTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const variant = this.getAttribute('data-variant');
+                    
+                    // Убираем активный класс у всех табов и контентов
+                    variantTabs.forEach(t => t.classList.remove('active'));
+                    variantContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Добавляем активный класс к выбранному табу и контенту
+                    this.classList.add('active');
+                    document.getElementById(variant + '-content').classList.add('active');
                 });
             });
             
-            // Закрываем меню при клике вне его
-            document.addEventListener('click', function(e) {
-                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                    navLinks.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                }
-            });
-        }
-        
-        // Предотвращение конфликтов с term-link
-        const clickableCards = document.querySelectorAll('.clickable-card');
-        
-        clickableCards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                if (e.target.classList.contains('term-link')) {
-                    e.stopPropagation();
-                    return;
-                }
-                
-                const cardTitle = this.querySelector('h4').textContent;
-                if (cardTitle.includes('Польша')) {
-                    window.open('poland-plan.html', '_blank');
-                } else if (cardTitle.includes('Германия')) {
-                    window.open('germany-plan.html', '_blank');
-                } else if (cardTitle.includes('Агентская')) {
-                    window.open('agency-plan.html', '_blank');
-                }
+            // Предотвращение конфликтов с term-link
+            const clickableCards = document.querySelectorAll('.clickable-card');
+            
+            clickableCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('term-link')) {
+                        e.stopPropagation();
+                        return;
+                    }
+                    
+                    const cardTitle = this.querySelector('h4').textContent;
+                    if (cardTitle.includes('Польша')) {
+                        window.open('poland-plan.html', '_blank');
+                    } else if (cardTitle.includes('Германия')) {
+                        window.open('germany-plan.html', '_blank');
+                    } else if (cardTitle.includes('Агентская')) {
+                        window.open('agency-plan.html', '_blank');
+                    }
+                });
             });
         });
-    });
 </script>
 
 </body>
