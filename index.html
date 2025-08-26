@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -928,7 +928,7 @@
             /* Мобильные стили для новых блоков */
             .step-content {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
                 overflow-x: hidden;
             }
 
@@ -967,6 +967,7 @@
             .execution-step {
                 padding: 1rem;
                 margin-bottom: 1.5rem;
+                overflow-x: hidden;
             }
 
             .execution-step .step-number {
@@ -978,6 +979,7 @@
 
             .execution-step .step-content h4 {
                 font-size: 1.1rem;
+                margin-bottom: 0.5rem;
             }
 
             .summary-card {
@@ -1358,7 +1360,7 @@
         }
 
         .execution-step .step-content p {
-            margin: 0 0 0.5rem 0;
+            margin: 0.5rem 0 0 0;
             color: var(--amber);
         }
 
@@ -1366,6 +1368,7 @@
             font-weight: 600;
             color: var(--gold);
             font-size: 0.9rem;
+            margin: 0.5rem 0;
         }
 
         .execution-summary {
@@ -1697,6 +1700,7 @@
             <p>Закупаем лён в Казахстане по 550€/т, продаём в Европе по 790€/т.</p>
             <p>Инвестиция 66 000€ → прибыль 11 800€ за 3 месяца.</p>
             <p>Полная защита активов через европейскую компанию.</p>
+            <p>📚 <span class="term-link" onclick="showTerm('roi')">ROI</span> • <span class="term-link" onclick="showTerm('margin')">Маржа</span> • <span class="term-link" onclick="showTerm('performance-bond')">Performance Bond</span></p>
         </div>
     </div>
 </div>
@@ -2295,7 +2299,7 @@
         <!-- Обновленный калькулятор с 30% -->
         <div id="roi-calculator" class="calculator-section">
             <h3>🧮 ROI Калькулятор</h3>
-            <p style="color: var(--amber); margin-bottom: 2rem;">Экспериментируйте с параметрами</p>
+            <p style="color: var(--amber); margin-bottom: 2rem;">Экспериментируйте с параметрами • <span class="term-link" onclick="showTerm('roi')">ROI</span> • <span class="term-link" onclick="showTerm('margin')">Маржа</span></p>
             <div class="calculator-grid">
                 <div class="calculator-inputs">
                     <div class="input-group">
@@ -2354,8 +2358,8 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <h4>Загрузка в Казахстане</h4>
-                    <p>Погрузка 100 т льна в вагоны (1-2 дня)</p>
                     <div class="step-cost">Стоимость: 550€/т × 100т = 55 000€</div>
+                    <p>Погрузка 100 т льна в вагоны (1-2 дня)</p>
                 </div>
             </div>
             
@@ -2363,8 +2367,8 @@
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <h4>Железнодорожная перевозка</h4>
-                    <p>Казахстан → Польша (7-10 дней)</p>
                     <div class="step-cost">Стоимость: 80€/т × 100т = 8 000€</div>
+                    <p>Казахстан → Польша (7-10 дней)</p>
                 </div>
             </div>
             
@@ -2372,8 +2376,8 @@
                 <div class="step-number">3</div>
                 <div class="step-content">
                     <h4>Таможенное оформление</h4>
-                    <p>Оформление документов в Польше (1-2 дня)</p>
                     <div class="step-cost">Стоимость: 30€/т × 100т = 3 000€</div>
+                    <p>Оформление документов в Польше (1-2 дня)</p>
                 </div>
             </div>
             
@@ -2381,8 +2385,8 @@
                 <div class="step-number">4</div>
                 <div class="step-content">
                     <h4>Доставка покупателю</h4>
-                    <p>Разгрузка и передача товара (1 день)</p>
                     <div class="step-cost">Стоимость: 0€ (включено в цену)</div>
+                    <p>Разгрузка и передача товара (1 день)</p>
                 </div>
             </div>
         </div>
@@ -2459,9 +2463,9 @@
             <div class="protection-card">
                 <h4>🔍 Качество и контроль</h4>
                 <ul>
-                    <li>Независимая инспекция (SGS)</li>
+                    <li>Независимая инспекция (<span class="term-link" onclick="showTerm('sgs')">SGS</span>)</li>
                     <li>Сертификаты качества</li>
-                    <li>Фитосанитарные документы</li>
+                    <li><span class="term-link" onclick="showTerm('phytosanitary')">Фитосанитарные</span> документы</li>
                     <li>Таможенное оформление</li>
                 </ul>
             </div>
